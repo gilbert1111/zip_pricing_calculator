@@ -1,0 +1,2283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Guide to Zip's Pricing & Packaging</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 40vh;
+        }
+        .analysis-chart-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            max-height: 50vh;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .nav-link {
+            transition: all 0.3s;
+        }
+        .nav-link.active {
+            color: #2563eb; /* blue-600 */
+            border-bottom: 2px solid #2563eb;
+        }
+        .slider-thumb::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #2563eb;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        .slider-thumb::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #2563eb;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        /* Make chart bars clickable */
+        #price-chart {
+            cursor: pointer;
+        }
+        .modal-overlay {
+            transition: opacity 0.3s ease;
+        }
+        .editable-input {
+            font: inherit;
+            color: inherit;
+            background-color: #f1f5f9; /* slate-100 */
+            border: none;
+            border-bottom: 1px solid #3b82f6; /* blue-500 */
+            text-align: center;
+            outline: none;
+            width: 6rem; /* 96px */
+            border-radius: 3px;
+            padding: 0 2px;
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <span class="font-bold text-xl text-blue-600">zip</span>
+                    <span class="font-semibold text-xl text-slate-700 ml-2">Pricing & Packaging Guide</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#why" class="nav-link active px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-blue-600" onclick="setActive(this)">The Why</a>
+                        <a href="#explorer" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-blue-600" onclick="setActive(this)">Model Explorer</a>
+                        <a href="#calculator" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-blue-600" onclick="setActive(this)">Pricing Calculator</a>
+                        <a href="#analysis" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-blue-600" onclick="setActive(this)">Scenario Analysis</a>
+                        <a href="#resources" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-blue-600" onclick="setActive(this)">Resource Hub</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto p-4 sm:p-6 lg:p-8">
+
+        <!-- ======================= -->
+        <!-- The Why Section         -->
+        <!-- ======================= -->
+        <section id="why" class="mb-12 pt-4">
+            <h1 class="text-3xl font-bold text-slate-900 mb-2">Selling the Future: A New Model for a New Era</h1>
+            <p class="text-lg text-slate-600 mb-6">This guide is your interactive resource for mastering Zip's new pricing and packaging. Our goal is to move beyond simply selling features and instead provide value-aligned solutions that help our customers succeed and grow with us.</p>
+            
+            <div class="grid md:grid-cols-3 gap-6 text-center">
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <div class="text-blue-500 mb-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg></div>
+                    <h3 class="text-lg font-semibold mb-2">Improve Deal Velocity</h3>
+                    <p class="text-slate-600 text-sm">A modular structure lets prospects buy exactly what they need, allowing us to land new logos faster.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <div class="text-blue-500 mb-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg></div>
+                    <h3 class="text-lg font-semibold mb-2">Drive More NRR</h3>
+                    <p class="text-slate-600 text-sm">Preserve future upsell opportunities by holding back functionality and avoiding unnecessary discounting.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <div class="text-blue-500 mb-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg></div>
+                    <h3 class="text-lg font-semibold mb-2">Unlock More Sales Motions</h3>
+                    <p class="text-slate-600 text-sm">Gain flexibility to pick the right motion, from targeted use cases to wall-to-wall transformations.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= -->
+        <!-- Model Explorer Section  -->
+        <!-- ======================= -->
+        <section id="explorer" class="mb-12 pt-16 -mt-16">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">Model Explorer</h2>
+            <p class="text-slate-600 mb-6">Our new model is tailored to multiple customer segments, each with a distinct pricing curve. Explore the high-level differences below, then use the **Pricing Calculator** to see how the pricing changes for each segment.</p>
+            <div id="model-display" class="grid md:grid-cols-2 gap-6"></div>
+        </section>
+
+        <!-- ======================= -->
+        <!-- Pricing Calculator      -->
+        <!-- ======================= -->
+        <section id="calculator" class="mb-12 pt-16 -mt-16">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">Pricing Calculator</h2>
+            <p class="text-slate-600 mb-6">This is where theory meets practice. Select a customer segment and adjust the inputs to see how they impact the final price. This is the best way to learn the model's levers and nuances for each market.</p>
+            
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <!-- INPUTS COLUMN -->
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">Deal Inputs</h3>
+                        <div class="space-y-6">
+                            <!-- Core Deal Info -->
+                            <div class="bg-slate-50 p-4 rounded-md border">
+                                <h4 class="font-semibold text-slate-800 mb-3">Core Deal Information</h4>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="segment-selector" class="block text-sm font-medium text-slate-700">Customer Segment</label>
+                                        <select id="segment-selector" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-slate-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"></select>
+                                    </div>
+                                    <div>
+                                        <label for="customer-type" class="block text-sm font-medium text-slate-700">Customer Type</label>
+                                        <select id="customer-type" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-slate-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
+                                            <option>New Customer</option>
+                                            <option>Existing Customer</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="curve-version-selector" class="block text-sm font-medium text-slate-700">Curve Version</label>
+                                        <select id="curve-version-selector" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-slate-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
+                                            <option value="v19">v19 (Current)</option>
+                                            <option value="v20">v20 (New)</option>
+                                        </select>
+                                    </div>
+                                    <div id="existing-acv-container" class="hidden">
+                                        <label for="existing-acv" class="block text-sm font-medium text-slate-700">Existing Customer ACV</label>
+                                        <input type="number" id="existing-acv" value="0" min="0" class="mt-1 block w-full border-slate-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                    </div>
+                                    <div>
+                                        <label for="deal-examples" class="block text-sm font-medium text-slate-700">Load Deal Example</label>
+                                        <select id="deal-examples" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-slate-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
+                                            <option value="none">-- Select a Deal --</option>
+                                        </select>
+                                    </div>
+                                    <div class="sm:col-span-2">
+                                        <label for="csvFileInput" class="w-full text-center cursor-pointer bg-white hover:bg-slate-50 border border-slate-300 text-sm font-medium text-slate-700 px-4 py-2 rounded-md">
+                                            Upload Customer CSV for Deal Examples
+                                        </label>
+                                        <input type="file" id="csvFileInput" class="hidden" accept=".csv">
+                                        <p id="fileName" class="text-xs text-slate-500 mt-1 text-center"></p>
+                                    </div>
+                                    <div id="deal-filters-container" class="hidden sm:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <div>
+                                            <label for="deal-filter-segment" class="block text-sm font-medium text-slate-700">Filter Examples by Segment</label>
+                                            <select id="deal-filter-segment" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-slate-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"></select>
+                                        </div>
+                                         <div>
+                                            <label for="deal-filter-industry" class="block text-sm font-medium text-slate-700">Filter Examples by Industry</label>
+                                            <select id="deal-filter-industry" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-slate-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"></select>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label for="competitive-scenario" class="block text-sm font-medium text-slate-700">
+                                            <div class="flex items-center space-x-2">
+                                                <span>Competitive Scenario</span>
+                                                <div class="relative group">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-400" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                                                    <div class="absolute bottom-full mb-2 w-64 bg-slate-800 text-white text-xs rounded-md py-1 px-2 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none -translate-x-1/2 left-1/2">
+                                                        Assume competitive RFP to start. To toggle to "Leading the Evaluation", users must obtain manager approval / leadership sign-off
+                                                        <svg class="absolute text-slate-800 h-2 w-full left-0 top-full" x="0px" y="0px" viewBox="0 0 255 255" xml:space="preserve"><polygon class="fill-current" points="0,0 127.5,127.5 255,0"></polygon></svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </label>
+                                        <select id="competitive-scenario" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-slate-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"></select>
+                                    </div>
+                                    <div>
+                                        <label for="industry-margin" class="block text-sm font-medium text-slate-700">
+                                            <div class="flex items-center space-x-2">
+                                                <span>Right-to-win Industry</span>
+                                                <div class="relative group">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-400" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                                                    <div class="absolute bottom-full mb-2 w-64 bg-slate-800 text-white text-xs rounded-md py-2 px-3 text-left opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none -translate-x-1/2 left-1/2">
+                                                        <p class="mb-1">- <strong class="font-semibold">Right-to-win industries</strong> are industries within our core ICP, where we have many references and extensive experience - i.e., Tech, Finserv</p>
+                                                        <p>- <strong class="font-semibold">No right-to-win yet industries</strong> are industries where we are less experienced and still need additional customers</p>
+                                                        <svg class="absolute text-slate-800 h-2 w-full left-0 top-full" x="0px" y="0px" viewBox="0 0 255 255" xml:space="preserve"><polygon class="fill-current" points="0,0 127.5,127.5 255,0"></polygon></svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </label>
+                                        <select id="industry-margin" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-slate-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"></select>
+                                    </div>
+                                    <div class="sm:col-span-2">
+                                        <label for="currency-selector" class="block text-sm font-medium text-slate-700">Currency</label>
+                                        <select id="currency-selector" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-slate-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Customer Scope -->
+                            <div id="spend-input-container">
+                                <label for="spend" class="block text-sm font-medium text-slate-700">Spend in Scope ($ Millions)</label>
+                                <div class="flex items-center space-x-4">
+                                    <input type="range" id="spend" min="0" max="10000" step="1" value="0" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer slider-thumb">
+                                    <span id="spend-value" class="font-semibold text-blue-600 w-24 text-center cursor-pointer">$0M</span>
+                                </div>
+                            </div>
+                             <div>
+                                <label for="ftes" class="block text-sm font-medium text-slate-700">FTEs in Scope (Thousands)</label>
+                                <div class="flex items-center space-x-4">
+                                    <input type="range" id="ftes" min="0" max="100" step="0.001" value="25" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer slider-thumb">
+                                    <span id="ftes-value" class="font-semibold text-blue-600 w-24 text-center cursor-pointer">25.000k</span>
+                                </div>
+                            </div>
+                            <div id="users-input-container">
+                                <label for="users" class="block text-sm font-medium text-slate-700">Users in Scope</label>
+                                <div class="flex items-center space-x-4">
+                                    <input type="range" id="users" min="0" max="25000" step="1" value="2500" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer slider-thumb">
+                                    <span id="users-value" class="font-semibold text-blue-600 w-24 text-center cursor-pointer">2500</span>
+                                </div>
+                            </div>
+
+                            <!-- Solutions & Add-ons -->
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700">Core Solutions</label>
+                                <div id="solutions-checkboxes" class="mt-2 grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-sm"></div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700">Product Add-Ons</label>
+                                <div id="addons-checkboxes" class="mt-2 grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-sm"></div>
+                                <div id="addon-configs" class="mt-2 space-y-2 pl-5"></div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700">Platform Add-Ons</label>
+                                <div id="platform-addons-checkboxes" class="mt-2 grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-sm"></div>
+                                <div id="platform-addon-configs" class="mt-2 space-y-2 pl-5"></div>
+                            </div>
+                            
+                            <!-- Support & Services -->
+                             <div class="bg-slate-50 p-4 rounded-md border">
+                                <h4 class="font-semibold text-slate-800 mb-3">Support & Implementation</h4>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="support-tier" class="block text-sm font-medium text-slate-700">Support</label>
+                                        <select id="support-tier" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-slate-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"></select>
+                                    </div>
+                                    <div>
+                                        <label for="implementation-services" class="block text-sm font-medium text-slate-700">Implementation</label>
+                                        <input type="number" id="implementation-services" value="0" min="0" step="1000" class="mt-1 block w-full border-slate-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Discount -->
+                            <div class="border-t pt-6 space-y-4">
+                                <div id="competitive-discount-container" class="text-sm font-medium text-slate-700 flex justify-between hidden">
+                                    <span>Included competitive situation discount</span>
+                                    <span id="competitive-discount-value" class="font-semibold text-red-600">0%</span>
+                                </div>
+                                <div id="overall-discount-container">
+                                    <label for="discount" class="block text-sm font-medium text-slate-700">Discretionary Discount (%)</label>
+                                    <div class="flex items-center space-x-4">
+                                        <input type="range" id="discount" min="0" max="80" step="1" value="0" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer slider-thumb">
+                                        <span id="discount-value" class="font-semibold text-red-600 w-20 text-center">0%</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button id="manager-exception-btn" class="w-full bg-amber-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-amber-600 transition">
+                                        Manager Exception
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- PRICE & ANALYSIS COLUMN -->
+                    <div class="flex flex-col space-y-8">
+                        <div>
+                             <div class="flex justify-between items-center mb-4">
+                                <div class="flex items-center space-x-2">
+                                    <h3 class="text-xl font-semibold">Output Price</h3>
+                                    <div class="relative group">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-400" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                        </svg>
+                                        <div class="absolute bottom-full mb-2 w-48 bg-slate-800 text-white text-xs rounded-md py-1 px-2 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none -translate-x-1/2 left-1/2">
+                                            Click on a price column to drill deeper into the pricing.
+                                            <svg class="absolute text-slate-800 h-2 w-full left-0 top-full" x="0px" y="0px" viewBox="0 0 255 255" xml:space="preserve"><polygon class="fill-current" points="0,0 127.5,127.5 255,0"/></svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button id="chart-back-btn" class="hidden text-sm bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold py-1 px-3 rounded-md transition">&larr; Back</button>
+                            </div>
+                            <div class="flex-grow chart-container">
+                                <canvas id="price-chart"></canvas>
+                            </div>
+                            <div id="price-summary" class="text-center mt-4 space-y-2">
+                                <div class="grid grid-cols-2 divide-x">
+                                    <div class="text-center pr-4">
+                                        <p class="text-slate-600">Annual List Price (ARR)</p>
+                                        <p id="list-price" class="text-3xl lg:text-4xl font-bold text-blue-600">$0</p>
+                                    </div>
+                                    <div class="text-center pl-4">
+                                        <p class="text-slate-600">Discounted Price</p>
+                                        <p id="discounted-price" class="text-3xl lg:text-4xl font-bold text-slate-800">$0</p>
+                                    </div>
+                                </div>
+                                <p id="historical-price-container" class="text-sm text-slate-500 pt-2 text-center hidden">Historical Price: <span id="historical-price"></span></p>
+                            </div>
+                        </div>
+                        <div class="border-t pt-4">
+                            <h3 class="text-xl font-semibold mb-4 text-center">True-Forward Pricing</h3>
+                            <div id="true-up-display" class="space-y-4 text-sm">
+                                <!-- Headers -->
+                                <div class="grid grid-cols-3 gap-4 font-semibold text-slate-600 text-center pb-2 border-b">
+                                    <div class="text-left">Metric</div>
+                                    <div>Annual List Price</div>
+                                    <div>Discounted Price</div>
+                                </div>
+                                <!-- Spend Row -->
+                                <div id="true-up-spend-row" class="grid grid-cols-3 gap-4 items-center">
+                                    <div class="font-semibold text-slate-800">Spend<p class="font-normal text-xs text-slate-500">per $1M</p></div>
+                                    <div id="spend-true-up-list" class="text-center font-medium text-slate-700"></div>
+                                    <div id="spend-true-up-discounted" class="text-center font-medium text-slate-700"></div>
+                                </div>
+                                <!-- FTE Row -->
+                                <div id="true-up-fte-row" class="grid grid-cols-3 gap-4 items-center">
+                                    <div class="font-semibold text-slate-800">FTE<p class="font-normal text-xs text-slate-500">per FTE</p></div>
+                                    <div id="fte-true-up-list" class="text-center font-medium text-slate-700"></div>
+                                    <div id="fte-true-up-discounted" class="text-center font-medium text-slate-700"></div>
+                                </div>
+                                <!-- User Row -->
+                                <div id="true-up-user-row" class="grid grid-cols-3 gap-4 items-center">
+                                    <div class="font-semibold text-slate-800">User<p class="font-normal text-xs text-slate-500">per User</p></div>
+                                    <div id="user-true-up-list" class="text-center font-medium text-slate-700"></div>
+                                    <div id="user-true-up-discounted" class="text-center font-medium text-slate-700"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- AI Agents Configuration -->
+                        <div id="ai-agents-config" class="hidden space-y-4 bg-slate-50 p-4 rounded-md border">
+                            <div class="flex justify-between items-center">
+                                <h4 class="font-semibold text-slate-800">AI Agents Configuration</h4>
+                                <div id="ai-manager-exception-container" class="hidden items-center space-x-2 text-sm">
+                                    <label for="manager-exception-ai" class="text-slate-600">Separate AI Discount</label>
+                                    <input type="checkbox" id="manager-exception-ai" class="h-4 w-4 text-blue-600 border-slate-300 rounded focus:ring-blue-500">
+                                </div>
+                            </div>
+                            <div id="granular-ai-agents" class="grid grid-cols-1 gap-y-2"></div>
+
+                            <!-- Additional Agents Toggle 1 -->
+                            <div class="mt-4 pt-4 border-t">
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="additional-agents-prl-toggle" class="h-4 w-4 text-blue-600 border-slate-300 rounded focus:ring-blue-500">
+                                    <label for="additional-agents-prl-toggle" class="ml-2 text-sm font-medium text-slate-700">Additional AI Agents - Procurement, Risk, Legal</label>
+                                </div>
+                                <div id="additional-agents-prl-config" class="hidden mt-2 pl-6">
+                                    <label for="additional-agents-prl-count" class="block text-sm font-medium text-slate-700">How many additional agents?</label>
+                                    <input type="number" id="additional-agents-prl-count" value="0" min="0" class="mt-1 block w-full border-slate-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                </div>
+                            </div>
+
+                            <!-- Additional Agents Toggle 2 -->
+                            <div class="mt-2">
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="additional-agents-ssm-toggle" class="h-4 w-4 text-blue-600 border-slate-300 rounded focus:ring-blue-500">
+                                    <label for="additional-agents-ssm-toggle" class="ml-2 text-sm font-medium text-slate-700">Additional AI Agents - Sourcing, Supplier Management</label>
+                                </div>
+                                <div id="additional-agents-ssm-config" class="hidden mt-2 pl-6">
+                                    <label for="additional-agents-ssm-count" class="block text-sm font-medium text-slate-700">How many additional agents?</label>
+                                    <input type="number" id="additional-agents-ssm-count" value="0" min="0" class="mt-1 block w-full border-slate-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="ai-credits" class="block text-sm font-medium text-slate-700">Credit Packs (1k)</label>
+                                <input type="number" id="ai-credits" value="0" min="0" class="mt-1 block w-full border-slate-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            </div>
+                            <div id="ai-discount-container" class="hidden">
+                                <label for="ai-discount" class="block text-sm font-medium text-slate-700">AI Discount (%)</label>
+                                <div class="flex items-center space-x-4">
+                                    <input type="range" id="ai-discount" min="0" max="80" step="1" value="0" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer slider-thumb">
+                                    <span id="ai-discount-value" class="font-semibold text-red-600 w-20 text-center">0%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= -->
+        <!-- Scenario Analysis       -->
+        <!-- ======================= -->
+        <section id="analysis" class="mb-12 pt-16 -mt-16">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">Scenario Analysis</h2>
+            <p class="text-slate-600 mb-6">Use these controls to compare how different solution prices scale based on FTE count for any customer segment. This tool is designed to help you understand pricing curves and the relative cost of each solution for different types of customers.</p>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="bg-slate-50 p-4 rounded-lg mb-6 border border-slate-200">
+                    <h3 class="text-lg font-semibold mb-4 text-slate-800">Analysis Controls</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div>
+                            <label for="analysis-model-selector" class="block text-sm font-medium text-slate-700 mb-1">Analysis Type</label>
+                            <select id="analysis-model-selector" class="w-full pl-3 pr-10 py-2 text-base border-slate-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
+                                <option value="compare">New Model vs. Old Model</option>
+                                <option value="new">New Model Only</option>
+                                <option value="old">Old Model Only</option>
+                            </select>
+                        </div>
+                        <div id="analysis-new-model-controls">
+                            <label for="analysis-segment-selector" class="block text-sm font-medium text-slate-700 mb-1">Customer Segment</label>
+                            <select id="analysis-segment-selector" class="w-full pl-3 pr-10 py-2 text-base border-slate-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"></select>
+                        </div>
+                        <div id="analysis-old-model-controls" class="hidden">
+                             <label for="analysis-platform-selector" class="block text-sm font-medium text-slate-700 mb-1">Old Model Platform</label>
+                            <select id="analysis-platform-selector" class="w-full pl-3 pr-10 py-2 text-base border-slate-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
+                                <option>Starter</option>
+                                <option>Professional</option>
+                                <option>Premier</option>
+                            </select>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2">
+                            <div>
+                                <label for="fte-min" class="block text-sm font-medium text-slate-700 mb-1">Min FTEs</label>
+                                <input type="number" id="fte-min" value="100" min="0" step="100" class="w-full border-slate-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            </div>
+                            <div>
+                                <label for="fte-max" class="block text-sm font-medium text-slate-700 mb-1">Max FTEs</label>
+                                <input type="number" id="fte-max" value="2000" min="0" step="100" class="w-full border-slate-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            </div>
+                             <div>
+                                <label for="fte-step" class="block text-sm font-medium text-slate-700 mb-1">Step</label>
+                                <input type="number" id="fte-step" value="100" min="1" step="50" class="w-full border-slate-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            </div>
+                        </div>
+                        <div id="analysis-user-count-container" class="hidden">
+                            <label for="analysis-user-count" class="block text-sm font-medium text-slate-700 mb-1">Total Users for Analysis</label>
+                            <input type="number" id="analysis-user-count" value="1000" min="0" step="100" class="w-full border-slate-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                        <div id="analysis-spend-per-fte-container" class="hidden">
+                            <label for="analysis-spend-per-fte" class="block text-sm font-medium text-slate-700 mb-1">Assumed Spend per FTE ($)</label>
+                            <input type="number" id="analysis-spend-per-fte" value="500000" min="0" class="w-full border-slate-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <label class="block text-sm font-medium text-slate-700 mb-2">Select Solutions to Analyze</label>
+                        <div id="analysis-solutions-checkboxes" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-4 gap-y-2 text-sm"></div>
+                    </div>
+                     <div class="mt-4 pt-4 border-t border-slate-200">
+                         <button id="update-analysis-btn" class="w-full md:w-auto bg-blue-600 text-white font-semibold py-2 px-6 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out">Update Analysis</button>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-semibold mb-4" id="analysis-title">Solution Pricing by FTE Count</h3>
+                <div class="analysis-chart-container mb-8">
+                    <canvas id="analysis-chart"></canvas>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-slate-200">
+                        <thead class="bg-slate-50" id="analysis-table-head"></thead>
+                        <tbody class="bg-white divide-y divide-slate-200" id="analysis-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= -->
+        <!-- Resource Hub Section    -->
+        <!-- ======================= -->
+        <section id="resources" class="pt-16 -mt-16">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">Resource Hub</h2>
+            <p class="text-slate-600 mb-6">You're not expected to memorize everything. Use this section as your quick reference guide for key talking points, rules of engagement, and frequently asked questions when you're in the field.</p>
+
+            <div class="bg-white rounded-lg shadow-md">
+                <div id="resource-content" class="p-6">
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <!-- Approval Required Modal -->
+    <div id="approval-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 hidden modal-overlay">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <div class="mt-3 text-center">
+                <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-blue-100">
+                    <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <h3 class="text-lg leading-6 font-medium text-gray-900 mt-2">Approval Required</h3>
+                <div class="mt-2 px-7 py-3">
+                    <p class="text-sm text-gray-500">
+                        Pricing of $1M+ requires segment VP and Head of Sales approval.
+                    </p>
+                </div>
+                <div class="items-center px-4 py-3">
+                    <button id="acknowledge-approval-btn" class="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                        Acknowledge & Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Manager Exception Modal -->
+    <div id="manager-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 hidden modal-overlay">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <div class="mt-3 text-center">
+                <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-amber-100">
+                    <svg class="h-6 w-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                </div>
+                <h3 class="text-lg leading-6 font-medium text-gray-900 mt-2">Manager Approval Required</h3>
+                <div class="mt-2 px-7 py-3">
+                    <p class="text-sm text-gray-500">
+                        Are you sure you have manager approval to apply line-item discounts? This action is tracked.
+                    </p>
+                </div>
+                <div class="items-center px-4 py-3">
+                    <button id="confirm-exception-btn" class="px-4 py-2 bg-amber-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-300">
+                        Confirm Approval
+                    </button>
+                     <button id="cancel-exception-btn" class="mt-2 px-4 py-2 bg-gray-200 text-gray-800 text-base font-medium rounded-md w-full shadow-sm hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-300">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // =======================
+        // Data & State Management
+        // =======================
+        const appState = {
+            curveVersion: 'v19',
+            segment: 'NAMER Strat',
+            inputs: {
+                customerType: 'New Customer',
+                spend: 0, ftes: 25, users: 2500,
+                solutions: ['Intake-to-Procure'],
+                solutionModifiers: { removeSavings: false, removeRenewals: false },
+                productAddOns: [],
+                platformAddOns: [],
+                overallDiscount: 0,
+                existingACV: 0,
+                competitiveScenario: 'Competitive RFP',
+                industryMargin: 'Right-to-win (higher price)',
+                catalogsSuppliers: 0,
+                vendorCard: 'Stripe',
+                numSandboxes: 0,
+                numIntegrations: 0,
+                aiCreditPacks: 0,
+                managerException: false,
+                aiManagerException: false, // For separate AI discount
+                lineItemDiscounts: {},
+                aiDiscount: 0,
+                granularAgents: { Procurement: 0, Risk: 0, Legal: 0, Sourcing: 0, 'Supplier Management': 0 },
+                additionalAgentsPRL: 0,
+                additionalAgentsSSM: 0,
+                supportTier: 'Standard',
+                implementationServices: 0,
+                currency: 'USD'
+            },
+            calculated: {
+                competitiveDiscountPercentage: 0,
+                exchangeRate: 1,
+            },
+            isInMillionDollarZone: false, // Tracks if price is currently >= $1M to manage pop-up
+            userInteracted: false,
+            chartState: {
+                level: 'main', 
+                selectedItem: null,
+                drilldownContext: 'discounted', // 'list' or 'discounted'
+                history: [],
+            }
+        };
+
+        // --- Core Data ---
+        let pastDealsData = [ { name: 'Prudential', segment: 'NAMER Strat', industry: 'Financial Services', spend: 2400, ftes: 36.5, users: 3650, solutions: ['Intake-to-Procure', 'Supplier Onboarding'], productAddOns: [], platformAddOns: [], historical: 1080000, products: {'Intake-to-Procure': 600000, 'Supplier Onboarding': 480000} }, { name: 'Discover', segment: 'NAMER Strat', industry: 'Financial Services', spend: 1500, ftes: 20.9, users: 1280, solutions: ['Intake-to-Procure', 'Supplier Onboarding'], productAddOns: [], platformAddOns: [], historical: 812500, products: {'Intake-to-Procure': 500000, 'Supplier Onboarding': 312500} }, { name: 'Datadog', segment: 'NAMER Key', industry: 'Software', spend: 0, ftes: 6.5, users: 0, solutions: ['Intake-to-Procure', 'Supplier Onboarding', 'Procure-to-Pay'], productAddOns: [], platformAddOns: [], historical: 645000, products: {'Intake-to-Procure': 300000, 'Supplier Onboarding': 145000, 'Procure-to-Pay': 200000} }, { name: 'Checkout.com', segment: 'EMEA Key', industry: 'Software', spend: 0, ftes: 2, users: 0, solutions: ['Intake-to-Procure', 'Supplier Onboarding', 'Procure-to-Pay', 'Sourcing'], productAddOns: [], platformAddOns: [], historical: 500000, products: {'Intake-to-Procure': 250000, 'Supplier Onboarding': 100000, 'Procure-to-Pay': 100000, 'Sourcing': 50000} } ];
+        const segments = ['NAMER Strat', 'EMEA Strat', 'NAMER Key', 'EMEA Key', 'NAMER Commercial', 'EMEA Commercial'];
+        const solutionsData = { 'Intake-to-Procure': { relativeValue: 1.0, userFee: 200 }, 'Procure-to-Pay': { relativeValue: 0.8, userFee: 100 }, 'Sourcing': { relativeValue: 0.25, userFee: 50 }, 'Supplier Onboarding': { relativeValue: 0.25, userFee: 50 }, 'Risk Orchestration': { relativeValue: 0.25, userFee: 50 }, 'Contract Orchestration': { relativeValue: 0.5, userFee: 50 } };
+        const productAddOnsData = { 'Budgets and Project Management': { relativeValue: 0.10 }, 'PO Management': { relativeValue: 0.40 }, 'Supplier Assessment': { relativeValue: 0.15 }, 'Vendor Cards': { brexValue: 0.18, stripeValue: 0 }, 'Global Payments': {}, 'Catalogs': { base: 3200, perSupplier: 1800 }, 'Remove Savings': { relativeValue: -0.05 }, 'Remove Renewals': { relativeValue: -0.10 } };
+        const platformAddOnsData = { 'Advanced Controls & Auditability': {relativeValue: 0.10}, 'AI Agents': {}, 'Sandbox': {relativeValue: 0.05}, 'Integrations': {}, 'Platform': {} }; // Added Platform for CSV mapping
+        const granularAgentTypes = ['Procurement', 'Risk', 'Legal', 'Sourcing', 'Supplier Management'];
+        
+        const solutionToAddonMap = {
+            'Intake-to-Procure': ['Budgets and Project Management', 'PO Management', 'Vendor Cards', 'Global Payments', 'Catalogs'],
+            'Procure-to-Pay': ['Vendor Cards', 'Global Payments', 'Catalogs'],
+            'Supplier Onboarding': ['Supplier Assessment'],
+            'Risk Orchestration': ['Supplier Assessment']
+        };
+
+        // --- Pricing Tiers & Modifiers ---
+        const competitiveScenarios = { 'Leading the evaluation': 0, 'Limited Competition': 0.20, 'Competitive RFP': 0.40 };
+        const industryMargins = { 'Right-to-win (higher price)': 0, 'No right-to-win yet (lower price)': 0.20 };
+        const supportTiers = { 'Standard': 0, 'Priority': 0.15, 'Priority Support +': 0.25 };
+        const exchangeRates = { 'USD': { rate: 1, symbol: '$' }, 'GBP': { rate: 0.79, symbol: '£' }, 'EUR': { rate: 0.93, symbol: '€' }, 'AUD': { rate: 1.51, symbol: 'A$' }, 'CHF': { rate: 0.90, symbol: 'Fr' }, 'CAD': { rate: 1.37, symbol: 'C$' }, 'ILS': { rate: 3.73, symbol: '₪' } };
+        const integrationTiers = [ { spend: 50, fte: 0.5, price: 5000 }, { spend: 200, fte: 2.5, price: 10000 }, { spend: 1000, fte: 10, price: 15000 }, { spend: Infinity, fte: Infinity, price: 25000 } ];
+        const userFeeTiers = [ { count: 100, discount: 0 }, { count: 500, discount: 0.20 }, { count: 1000, discount: 0.40 }, { count: 2500, discount: 0.60 }, { count: Infinity, discount: 0.80 } ];
+        const trueUpTiers = [ { fte: 0.5, spend: 50, stratSpend: 670, stratFTE: 70, keyFTE: 79 }, { fte: 1, spend: 100, stratSpend: 636, stratFTE: 67, keyFTE: 75 }, { fte: 2.5, spend: 200, stratSpend: 603, stratFTE: 63, keyFTE: 71 }, { fte: 5, spend: 500, stratSpend: 569, stratFTE: 60, keyFTE: 68 }, { fte: 10, spend: 1000, stratSpend: 536, stratFTE: 56, keyFTE: 64 }, { fte: 25, spend: 2500, stratSpend: 502, stratFTE: 53, keyFTE: 60 }, { fte: 50, spend: 5000, stratSpend: 469, stratFTE: 49, keyFTE: 56 }, { fte: 100, spend: 10000, stratSpend: 435, stratFTE: 46, keyFTE: 52 }, { fte: Infinity, spend: Infinity, stratSpend: 402, stratFTE: 42, keyFTE: 48 } ];
+        const advControlsMinPriceTiers = [ { fte: 0.5, spend: 50, min: 5000 }, { fte: 1, spend: 100, min: 10000 }, { fte: 2.5, spend: 200, min: 20000 }, { fte: 5, spend: 500, min: 30000 }, { fte: 10, spend: 1000, min: 50000 }, { fte: 25, spend: 2500, min: 125000 }, { fte: 50, spend: 5000, min: 250000 }, { fte: 100, spend: 10000, min: 375000 }, { fte: Infinity, spend: Infinity, min: 500000 } ];
+        const additionalAgentsPRLTiers = [ { spend: 50, fte: 0.5, price: 5000 }, { spend: 100, fte: 1, price: 8000 }, { spend: 200, fte: 2.5, price: 12000 }, { spend: 500, fte: 5, price: 18000 }, { spend: 1000, fte: 10, price: 30000 }, { spend: 2500, fte: 25, price: 50000 }, { spend: 5000, fte: 50, price: 70000 }, { spend: 10000, fte: 100, price: 100000 }, { spend: Infinity, fte: Infinity, price: 150000 } ];
+        const additionalAgentsSSMTiers = [ { spend: 50, fte: 0.5, price: 2500 }, { spend: 100, fte: 1, price: 4000 }, { spend: 200, fte: 2.5, price: 6000 }, { spend: 500, fte: 5, price: 9000 }, { spend: 1000, fte: 10, price: 15000 }, { spend: 2500, fte: 25, price: 25000 }, { spend: 5000, fte: 50, price: 35000 }, { spend: 10000, fte: 100, price: 50000 }, { spend: Infinity, fte: Infinity, price: 75000 } ];
+        const aiFloorsPRL_New = [13000, 21000, 29000, 38000, 80000, 118000, 190000, 300000, 440000];
+        const aiFloorsPRL_Existing = [15000, 25000, 35000, 45000, 90000, 135000, 215000, 340000, 500000];
+        const aiFloorsSSM_New = [11500, 18000, 24500, 29000, 65000, 94000, 145000, 225000, 320000];
+        const aiFloorsSSM_Existing = [12500, 20000, 27500, 32500, 75000, 110000, 170000, 260000, 375000];
+        const spendVolumeTiers = [ { max: 50000000, discount: 0 }, { max: 100000000, discount: 0.05 }, { max: 200000000, discount: 0.10 }, { max: 500000000, discount: 0.15 }, { max: 1000000000, discount: 0.20 }, { max: 2500000000, discount: 0.25 }, { max: 5000000000, discount: 0.30 }, { max: 10000000000, discount: 0.35 }, { max: Infinity, discount: 0.40 } ];
+        const fteVolumeTiers = [ { max: 500, discount: 0 }, { max: 1000, discount: 0.05 }, { max: 2500, discount: 0.10 }, { max: 5000, discount: 0.15 }, { max: 10000, discount: 0.20 }, { max: 25000, discount: 0.25 }, { max: 50000, discount: 0.30 }, { max: 100000, discount: 0.35 }, { max: Infinity, discount: 0.40 } ];
+        
+        const volumeTiersV20 = [
+            { max: 500, discount: 0 }, { max: 1000, discount: 0.05 }, { max: 2500, discount: 0.10 },
+            { max: 5000, discount: 0.15 }, { max: 10000, discount: 0.20 }, { max: 25000, discount: 0.30 },
+            { max: 50000, discount: 0.40 }, { max: 100000, discount: 0.50 }, { max: Infinity, discount: 0.60 }
+        ];
+
+        // --- OLD pricing model data ---
+        const oldModelData = { fteTiers: { tier1: 5000, tier2: 10000 }, platforms: { 'Starter': { flat: 6000, fte1: 24, fte2: 10, fte3: 7 }, 'Professional': { flat: 12000, fte1: 48, fte2: 19, fte3: 14 }, 'Premier': { flat: 54000, fte1: 96, fte2: 38, fte3: 29 } }, products: { 'Intake-to-Procure': { flat: 0, fte1: 96, fte2: 38, fte3: 29 }, 'Procure-to-Pay': { flat: 12000, fte1: 108, fte2: 43, fte3: 32 }, 'Sourcing': { flat: 10000, fte1: 48, fte2: 19, fte3: 14 }, 'AP Automation': { flat: 0, fte1: 48, fte2: 19, fte3: 14 } } };
+        const oldModelProducts = Object.keys(oldModelData.products);
+
+        // --- Analysis Section Defaults ---
+        const analysisDefaults = {
+            'NAMER Strat': { metric: 'Spend', hasUsers: true },
+            'EMEA Strat': { metric: 'Spend', hasUsers: true },
+            'NAMER Key': { metric: 'FTE', hasUsers: false },
+            'EMEA Key': { metric: 'FTE', hasUsers: true },
+            'NAMER Commercial': { metric: 'FTE', hasUsers: false },
+            'EMEA Commercial': { metric: 'FTE', hasUsers: true },
+        };
+
+        let priceChart, analysisChart;
+
+        // =======================
+        // Utility Functions
+        // =======================
+        function formatCurrency(value, useK = true) {
+            const rate = appState.calculated.exchangeRate;
+            const symbol = exchangeRates[appState.inputs.currency].symbol;
+            const convertedValue = value * rate;
+
+            if (convertedValue === null || isNaN(convertedValue)) return 'N/A';
+            if (useK && convertedValue >= 1000000) return `${symbol}${(convertedValue / 1000000).toFixed(2)}M`;
+            if (useK && convertedValue >= 1000) return `${symbol}${Math.round(convertedValue / 1000)}k`;
+            return `${symbol}${Math.round(convertedValue).toLocaleString()}`;
+        }
+
+        function getTierIndex(useSpend = false, ftes, spend) {
+            const currentFtes = ftes || appState.inputs.ftes;
+            const currentSpend = spend || appState.inputs.spend; // Spend is now in Millions
+            const key = useSpend ? 'spend' : 'fte';
+            const val = useSpend ? currentSpend : currentFtes;
+            for (let i = 0; i < trueUpTiers.length; i++) {
+                if (val <= trueUpTiers[i][key]) return i;
+            }
+            return trueUpTiers.length - 1;
+        }
+        
+        // =======================
+        // Volume Discount Logic
+        // =======================
+        function calculateVolumeDiscountMultiplier(type, value) {
+            let tiers;
+            if (appState.curveVersion === 'v20') {
+                // For v20, use the same tier structure for both spend and FTEs
+                tiers = volumeTiersV20;
+            } else { // v19
+                tiers = type === 'spend' ? spendVolumeTiers : fteVolumeTiers;
+            }
+
+            if (!value || value <= 0) return 1;
+
+            let discountedValue = 0;
+            let remainingValue = value;
+            let lastMax = 0;
+
+            for (const tier of tiers) {
+                const tierSize = tier.max - lastMax;
+                const valueInTier = Math.min(remainingValue, tierSize);
+                
+                discountedValue += valueInTier * (1 - tier.discount);
+                remainingValue -= valueInTier;
+                lastMax = tier.max;
+
+                if (remainingValue <= 0) break;
+            }
+            return discountedValue / value;
+        }
+
+        // =======================
+        // Core Calculation Logic
+        // =======================
+        function calculateBasePlatformFee(segment, ftes, spend) {
+            const currentSegment = segment || appState.segment;
+            const currentSpend = (spend || appState.inputs.spend) * 1000000;
+            const currentFtes = (ftes || appState.inputs.ftes) * 1000;
+        
+            const discount_spend = calculateVolumeDiscountMultiplier('spend', currentSpend);
+            const discount_fte = calculateVolumeDiscountMultiplier('fte', currentFtes);
+        
+            const is_namer_strat = currentSegment === 'NAMER Strat';
+            const is_emea_strat = currentSegment === 'EMEA Strat';
+            const is_namer_key = currentSegment === 'NAMER Key';
+            const is_emea_key = currentSegment === 'EMEA Key';
+            const is_namer_commercial = currentSegment === 'NAMER Commercial';
+            const is_emea_commercial = currentSegment === 'EMEA Commercial';
+        
+            const intercept_100k = 100000;
+            const intercept_50k = 50000;
+        
+            let key_fte_var, emea_key_spend_var, strat_spend_var, strat_fte_var;
+        
+            if (appState.curveVersion === 'v20') {
+                key_fte_var = 0.000471 * currentFtes * 200000 * 0.575;
+                emea_key_spend_var = 0.000471 * currentSpend * 1.1;
+                strat_spend_var = 0.000471 * currentSpend * 1.1 * 1.175;
+                strat_fte_var = 0.000471 * currentFtes * 200000 * 0.575 * 1.175;
+            } else { // v19
+                key_fte_var = 0.000471 * currentFtes * 200000 * 0.575 * 1.1;
+                emea_key_spend_var = 0.000471 * currentSpend * 1.1 * 1.1;
+                strat_spend_var = 0.000471 * currentSpend * 1.1 * 1.1 * 1.175;
+                strat_fte_var = 0.000471 * currentFtes * 200000 * 0.575 * 1.1 * 1.175;
+            }
+        
+            const commercial_low_ftes_var = 100 * currentFtes;
+            const namer_commercial_fte_var = (currentFtes < 2000) ? commercial_low_ftes_var : key_fte_var;
+            const namer_commercial_fte_intercept = (currentFtes < 2000) ? intercept_50k : intercept_100k;
+            const emea_commercial_spend_var = (currentFtes < 2000) ? (0.000471 * currentSpend * 1.1 * 1.2) : emea_key_spend_var;
+            const emea_commercial_spend_intercept = (currentFtes < 2000) ? intercept_50k : intercept_100k;
+            const emea_commercial_fte_var = (currentFtes < 2000) ? commercial_low_ftes_var : key_fte_var;
+            const emea_commercial_fte_intercept = (currentFtes < 2000) ? intercept_50k : intercept_100k;
+        
+            let rawPrice = 0;
+            if (is_namer_strat || is_emea_strat) {
+                rawPrice = (appState.inputs.spend > 0) ? (strat_spend_var * discount_spend) + intercept_100k : (strat_fte_var * discount_fte) + intercept_100k;
+            } else if (is_emea_key) {
+                rawPrice = (appState.inputs.spend > 0) ? (emea_key_spend_var * discount_spend) + intercept_100k : (key_fte_var * discount_fte) + intercept_100k;
+            } else if (is_emea_commercial) {
+                rawPrice = (appState.inputs.spend > 0) ? (emea_commercial_spend_var * discount_spend) + emea_commercial_spend_intercept : (emea_commercial_fte_var * discount_fte) + emea_commercial_fte_intercept;
+            } else if (is_namer_key) {
+                rawPrice = ((key_fte_var * 4/3) * discount_fte) + (intercept_100k * 4/3);
+            } else if (is_namer_commercial) {
+                rawPrice = (namer_commercial_fte_var * discount_fte) + namer_commercial_fte_intercept;
+            }
+            
+            return Math.max(0, rawPrice); 
+        }
+
+        function calculateSolutionsAndAddonsFee() {
+            const baseFee = calculateBasePlatformFee();
+            let totalRelativeValue = 0;
+            let fixedAddonFee = 0;
+            appState.inputs.solutions.forEach(sol => totalRelativeValue += solutionsData[sol].relativeValue);
+            appState.inputs.productAddOns.forEach(addon => {
+                if(productAddOnsData[addon]?.relativeValue) {
+                     totalRelativeValue += productAddOnsData[addon].relativeValue;
+                } else if (addon === 'Vendor Cards') {
+                    totalRelativeValue += (appState.inputs.vendorCard === 'Brex') ? productAddOnsData[addon].brexValue : productAddOnsData[addon].stripeValue;
+                } else if (addon === 'Catalogs') {
+                    // Rule 1c: If Procure-to-Pay is checked, Catalogs should be made $0
+                    if (!appState.inputs.solutions.includes('Procure-to-Pay')) {
+                        fixedAddonFee += productAddOnsData[addon].base + (appState.inputs.catalogsSuppliers * productAddOnsData[addon].perSupplier);
+                    }
+                }
+            });
+            return (baseFee * totalRelativeValue) + fixedAddonFee;
+        }
+        
+        function calculatePlatformAddOnsFee() {
+            let totalFee = 0;
+            const solutionsPlatformFee = calculateSolutionsAndAddonsFee();
+            if (appState.inputs.platformAddOns.includes('Sandbox')) totalFee += (solutionsPlatformFee * 0.05) * appState.inputs.numSandboxes;
+            if (appState.inputs.platformAddOns.includes('Integrations')) {
+                const useSpend = appState.inputs.spend > 0;
+                const tierVal = useSpend ? appState.inputs.spend : appState.inputs.ftes; // spend in M, ftes in k
+                const key = useSpend ? 'spend' : 'fte';
+                const tier = integrationTiers.find(t => tierVal <= t[key]);
+                totalFee += (tier ? tier.price : integrationTiers[integrationTiers.length - 1].price) * appState.inputs.numIntegrations;
+            }
+            if (appState.inputs.platformAddOns.includes('Advanced Controls & Auditability') && !appState.segment.includes('Strat')) {
+                const percentageFee = solutionsPlatformFee * 0.10;
+                const tierIndex = getTierIndex();
+                const minimumFee = advControlsMinPriceTiers[tierIndex].min;
+                totalFee += Math.max(percentageFee, minimumFee);
+            }
+            return totalFee;
+        }
+
+        function calculateAIFee() {
+            if (!appState.inputs.platformAddOns.includes('AI Agents')) return 0;
+
+            let totalFee = 0;
+            const agents = appState.inputs.granularAgents;
+            const selectedAgentTypes = granularAgentTypes.filter(type => agents[type]);
+            const true_count = selectedAgentTypes.length;
+
+            if (true_count > 0) {
+                const solutionsAndAddonsFee = calculateSolutionsAndAddonsFee();
+                const isExistingCustomer = appState.inputs.customerType === 'Existing Customer';
+                const useSpend = appState.inputs.spend > 0;
+                const tierIndex = getTierIndex(useSpend);
+
+                let calculatedAgentPrices = {};
+
+                // Calculate base price for PRL agents
+                const prl_floor_range = isExistingCustomer ? aiFloorsPRL_Existing : aiFloorsPRL_New;
+                const prl_referenceValue = isExistingCustomer && appState.inputs.existingACV > 0 ? appState.inputs.existingACV : solutionsAndAddonsFee;
+                const prl_calculated_value = 0.30 * prl_referenceValue;
+                const prl_tiered_floor_price = prl_floor_range[tierIndex];
+                const prl_base_price = (prl_calculated_value > prl_tiered_floor_price) ? Math.ceil(prl_calculated_value / 5000) * 5000 : prl_tiered_floor_price;
+                
+                calculatedAgentPrices['Procurement'] = prl_base_price;
+                calculatedAgentPrices['Risk'] = prl_base_price;
+                calculatedAgentPrices['Legal'] = prl_base_price;
+
+                // Calculate base price for SSM agents
+                const ssm_floor_range = isExistingCustomer ? aiFloorsSSM_Existing : aiFloorsSSM_New;
+                const ssm_referenceValue = isExistingCustomer && appState.inputs.existingACV > 0 ? appState.inputs.existingACV : solutionsAndAddonsFee;
+                const ssm_calculated_value = 0.15 * ssm_referenceValue; // 15%
+                const ssm_tiered_floor_price = ssm_floor_range[tierIndex];
+                const ssm_base_price = (ssm_calculated_value > ssm_tiered_floor_price) ? Math.ceil(ssm_calculated_value / 5000) * 5000 : ssm_tiered_floor_price;
+
+                calculatedAgentPrices['Sourcing'] = ssm_base_price;
+                calculatedAgentPrices['Supplier Management'] = ssm_base_price;
+
+                // Sum up prices for selected agents
+                selectedAgentTypes.forEach(agentType => {
+                    totalFee += calculatedAgentPrices[agentType];
+                });
+
+                // Apply bundle discount
+                if (true_count >= 3) {
+                    totalFee *= 0.8; // 20% discount
+                } else if (true_count === 2) {
+                    totalFee *= 0.9; // 10% discount
+                }
+            }
+            
+            // Add fees for additional agents
+            if (appState.inputs.additionalAgentsPRL > 0) {
+                const useSpend = appState.inputs.spend > 0;
+                const tierVal = useSpend ? appState.inputs.spend : appState.inputs.ftes;
+                const key = useSpend ? 'spend' : 'fte';
+                const tier = additionalAgentsPRLTiers.find(t => tierVal <= t[key]);
+                const pricePerAgent = tier ? tier.price : additionalAgentsPRLTiers[additionalAgentsPRLTiers.length - 1].price;
+                totalFee += appState.inputs.additionalAgentsPRL * pricePerAgent;
+            }
+            if (appState.inputs.additionalAgentsSSM > 0) {
+                const useSpend = appState.inputs.spend > 0;
+                const tierVal = useSpend ? appState.inputs.spend : appState.inputs.ftes;
+                const key = useSpend ? 'spend' : 'fte';
+                const tier = additionalAgentsSSMTiers.find(t => tierVal <= t[key]);
+                const pricePerAgent = tier ? tier.price : additionalAgentsSSMTiers[additionalAgentsSSMTiers.length - 1].price;
+                totalFee += appState.inputs.additionalAgentsSSM * pricePerAgent;
+            }
+            
+            // Add credit pack fees
+            totalFee += appState.inputs.aiCreditPacks * 10000;
+
+            return totalFee;
+        }
+
+        function calculateUserFee(specificSolution = null, userCountOverride = null) {
+            const segment = appState.segment;
+            const analysisSegment = document.getElementById('analysis-segment-selector').value;
+            const currentSegment = specificSolution ? analysisSegment : segment; // Use analysis segment for analysis calls
+            
+            if (!currentSegment.includes('Strat') && !currentSegment.includes('EMEA')) return 0;
+            const userCount = userCountOverride !== null ? userCountOverride : appState.inputs.users;
+            
+            let totalFee = 0;
+            const solutionsToCalc = specificSolution ? [specificSolution] : appState.inputs.solutions;
+            
+            solutionsToCalc.forEach(sol => {
+                if (!solutionsData[sol] || !solutionsData[sol].userFee) return;
+                const baseUserFee = solutionsData[sol].userFee;
+                let remainingUsers = userCount, solutionFee = 0;
+                for (let i = 0; i < userFeeTiers.length; i++) {
+                    const tier = userFeeTiers[i], prevTierLimit = i === 0 ? 0 : userFeeTiers[i-1].count, tierSize = tier.count - prevTierLimit;
+                    const usersInTier = Math.min(remainingUsers, tierSize);
+                    solutionFee += usersInTier * baseUserFee * (1 - tier.discount);
+                    remainingUsers -= usersInTier;
+                    if (remainingUsers <= 0) break;
+                }
+                totalFee += solutionFee;
+            });
+            return totalFee;
+        }
+
+
+        function calculateSupportFee(subtotal) {
+            return subtotal * (supportTiers[appState.inputs.supportTier] || 0);
+        }
+
+        function calculateIndividualItemPlatformFee(itemName) {
+            const baseFee = calculateBasePlatformFee();
+            let relativeValue = 0, fixedFee = 0;
+            if (solutionsData[itemName]) {
+                relativeValue = solutionsData[itemName].relativeValue;
+            } else if (productAddOnsData[itemName]) {
+                 if(productAddOnsData[itemName].relativeValue) {
+                     relativeValue = productAddOnsData[itemName].relativeValue;
+                 } else if (itemName === 'Vendor Cards') {
+                     relativeValue = (appState.inputs.vendorCard === 'Brex') ? productAddOnsData[itemName].brexValue : productAddOnsData[itemName].stripeValue;
+                 } else if (itemName === 'Catalogs') {
+                    // Rule 1c: If Procure-to-Pay is checked, Catalogs should be made $0
+                     if (!appState.inputs.solutions.includes('Procure-to-Pay')) {
+                         fixedFee = productAddOnsData[itemName].base + (appState.inputs.catalogsSuppliers * productAddOnsData[itemName].perSupplier);
+                     } else {
+                         fixedFee = 0;
+                     }
+                 }
+            } else if (platformAddOnsData[itemName]) {
+                const solutionsPlatformFee = calculateSolutionsAndAddonsFee();
+                 if (itemName === 'Sandbox') fixedFee = (solutionsPlatformFee * 0.05) * appState.inputs.numSandboxes;
+                 if (itemName === 'Integrations') {
+                     const useSpend = appState.inputs.spend > 0;
+                     const tierVal = useSpend ? appState.inputs.spend : appState.inputs.ftes;
+                     const key = useSpend ? 'spend' : 'fte';
+                     const tier = integrationTiers.find(t => tierVal <= t[key]);
+                     fixedFee = (tier ? tier.price : integrationTiers[integrationTiers.length - 1].price) * appState.inputs.numIntegrations;
+                 }
+                 if (itemName === 'Advanced Controls & Auditability' && !appState.segment.includes('Strat')) {
+                     const percentageFee = solutionsPlatformFee * 0.10;
+                     const tierIndex = getTierIndex();
+                     const minimumFee = advControlsMinPriceTiers[tierIndex].min;
+                     fixedFee = Math.max(percentageFee, minimumFee);
+                 }
+            }
+            return (baseFee * relativeValue) + fixedFee;
+        }
+
+        function calculateOldModelPrice(platform, products, ftes) {
+            let total = 0;
+            const itemsToPrice = [oldModelData.platforms[platform], ...products.map(p => oldModelData.products[p])];
+            itemsToPrice.forEach(item => {
+                if (!item) return;
+                let ftePrice = 0, remainingFtes = ftes;
+                const ftesInTier1 = Math.min(remainingFtes, oldModelData.fteTiers.tier1);
+                ftePrice += ftesInTier1 * item.fte1;
+                remainingFtes -= ftesInTier1;
+                if (remainingFtes > 0) {
+                    const ftesInTier2 = Math.min(remainingFtes, oldModelData.fteTiers.tier2 - oldModelData.fteTiers.tier1);
+                    ftePrice += ftesInTier2 * item.fte2;
+                    remainingFtes -= ftesInTier2;
+                }
+                if (remainingFtes > 0) ftePrice += remainingFtes * item.fte3;
+                total += item.flat + ftePrice;
+            });
+            return total;
+        }
+
+        // =======================
+        // UI Update Functions
+        // =======================
+        function updateUI() {
+            updateConditionalVisibility();
+            const solutionsFee = calculateSolutionsAndAddonsFee();
+            const platformAddOnsFee = calculatePlatformAddOnsFee();
+            const aiFee = calculateAIFee();
+            const userFee = calculateUserFee();
+            
+            const softwareSubtotal = solutionsFee + platformAddOnsFee + aiFee + userFee;
+            const supportFee = calculateSupportFee(softwareSubtotal);
+            const implementationFee = appState.inputs.implementationServices;
+            
+            const baseListPrice = softwareSubtotal + supportFee + implementationFee;
+            
+            const competitiveDiscountMultiplier = 1 - appState.calculated.competitiveDiscountPercentage / 100;
+            
+            const annualListPrice = baseListPrice * competitiveDiscountMultiplier;
+
+            let discountedPrice;
+
+            if (appState.inputs.managerException) {
+                let baseValueForDiscountCalc = 0;
+                let discountedValueForDiscountCalc = 0;
+
+                const allSoftwareItems = [...appState.inputs.solutions, ...appState.inputs.productAddOns, ...appState.inputs.platformAddOns.filter(p => p !== 'AI Agents')];
+                allSoftwareItems.forEach(item => {
+                    let itemPrice = calculateIndividualItemPlatformFee(item) + calculateUserFee(item);
+                    baseValueForDiscountCalc += itemPrice;
+                    const itemDiscount = appState.inputs.lineItemDiscounts[item] || 0;
+                    discountedValueForDiscountCalc += itemPrice * (1 - itemDiscount / 100);
+                });
+
+                baseValueForDiscountCalc += aiFee;
+                const aiDiscountMultiplier = appState.inputs.aiManagerException ? (1 - appState.inputs.aiDiscount / 100) : 1;
+                discountedValueForDiscountCalc += aiFee * aiDiscountMultiplier;
+                
+                const discountedSupportFee = calculateSupportFee(discountedValueForDiscountCalc);
+                const baseSupportFee = calculateSupportFee(baseValueForDiscountCalc);
+
+                const baseTotalWithServices = baseValueForDiscountCalc + baseSupportFee + implementationFee;
+                const discountedTotalWithServices = discountedValueForDiscountCalc + discountedSupportFee + implementationFee;
+
+                const effectiveDiscretionaryMultiplier = (baseTotalWithServices > 0) ? discountedTotalWithServices / baseTotalWithServices : 1;
+                discountedPrice = annualListPrice * effectiveDiscretionaryMultiplier;
+            } else {
+                const overallDiscountMultiplier = 1 - appState.inputs.overallDiscount / 100;
+                discountedPrice = annualListPrice * overallDiscountMultiplier;
+            }
+
+            // Approval Modal Check
+            if (appState.userInteracted) {
+                if (annualListPrice >= 1000000 && !appState.isInMillionDollarZone) {
+                    // Price just crossed the $1M threshold
+                    document.getElementById('approval-modal').classList.remove('hidden');
+                    appState.isInMillionDollarZone = true; // Mark that we are in the zone
+                } else if (annualListPrice < 1000000) {
+                    // Price dropped below the threshold, reset the flag
+                    appState.isInMillionDollarZone = false;
+                }
+            }
+            
+            document.getElementById('list-price').textContent = formatCurrency(annualListPrice);
+            document.getElementById('discounted-price').textContent = formatCurrency(discountedPrice);
+            
+            const historicalPriceContainer = document.getElementById('historical-price-container');
+            if (appState.inputs.existingACV > 0) {
+                 document.getElementById('historical-price').textContent = formatCurrency(appState.inputs.existingACV);
+                 historicalPriceContainer.classList.remove('hidden');
+            } else {
+                 historicalPriceContainer.classList.add('hidden');
+            }
+
+            updateChart(annualListPrice, discountedPrice);
+            updateTrueUpDisplay(annualListPrice, discountedPrice, baseListPrice);
+        }
+
+        function updateChart(annualListPrice, discountedPrice) {
+            const chartState = appState.chartState;
+            const backBtn = document.getElementById('chart-back-btn');
+            const isDealSelected = appState.inputs.existingACV > 0;
+            let labels = [], datasets = [];
+            backBtn.classList.toggle('hidden', chartState.level === 'main');
+
+            switch (chartState.level) {
+                case 'main':
+                    if (isDealSelected) {
+                        labels = ['New Model', 'Historical'];
+                        datasets = [{
+                            label: 'Annual List Price',
+                            data: [annualListPrice, 0],
+                            backgroundColor: 'rgba(59, 130, 246, 0.7)' // blue-500
+                        }, {
+                            label: 'Discounted Price',
+                            data: [discountedPrice, 0],
+                            backgroundColor: 'rgba(245, 158, 11, 0.7)' // amber-500
+                        }, {
+                            label: 'Historical Price',
+                            data: [0, appState.inputs.existingACV],
+                            backgroundColor: 'rgba(107, 114, 128, 0.5)'
+                        }];
+                    } else {
+                        labels = [''];
+                        datasets = [{
+                            label: 'Annual List Price',
+                            data: [annualListPrice],
+                            backgroundColor: 'rgba(59, 130, 246, 0.7)'
+                        }, {
+                            label: 'Discounted Price',
+                            data: [discountedPrice],
+                            backgroundColor: 'rgba(245, 158, 11, 0.7)'
+                        }];
+                    }
+                    priceChart.options.scales.x.stacked = false;
+                    priceChart.options.scales.y.stacked = false;
+                    break;
+                
+                case 'newModelBreakdown':
+                    const sFee = calculateSolutionsAndAddonsFee();
+                    const pFee = calculatePlatformAddOnsFee();
+                    const aFee = calculateAIFee();
+                    const uFee = calculateUserFee();
+                    const iFee = appState.inputs.implementationServices;
+                    const baseListPrice = sFee + pFee + aFee + uFee + calculateSupportFee(sFee + pFee + aFee + uFee) + iFee;
+
+                    const competitiveMultiplier = (baseListPrice > 0) ? annualListPrice / baseListPrice : 1;
+                    let finalMultiplier;
+                    if (appState.chartState.drilldownContext === 'list') {
+                        finalMultiplier = competitiveMultiplier;
+                    } else { // 'discounted'
+                        const effectiveDiscretionaryMultiplier = (annualListPrice > 0) ? discountedPrice / annualListPrice : 1;
+                        finalMultiplier = effectiveDiscretionaryMultiplier * competitiveMultiplier;
+                    }
+
+                    const discountedSolutionsAndUserFee = (sFee + uFee) * finalMultiplier;
+                    const discountedPlatformFee = pFee * finalMultiplier;
+                    const discountedAIFee = aFee * finalMultiplier;
+                    
+                    const discountedSoftwareSubtotal = discountedSolutionsAndUserFee + discountedPlatformFee + discountedAIFee;
+                    const discountedSupportFee = calculateSupportFee(discountedSoftwareSubtotal);
+                    const discountedImplementationFee = iFee * finalMultiplier;
+                    
+                    const titleLabel = appState.chartState.drilldownContext === 'list' ? 'List Price Breakdown' : 'Discounted Price Breakdown';
+                    labels = [titleLabel];
+                    datasets = [
+                        { label: 'Solutions & Product Add-Ons', data: [discountedSolutionsAndUserFee], backgroundColor: 'rgba(59, 130, 246, 0.7)' },
+                        { label: 'Platform & AI', data: [discountedPlatformFee + discountedAIFee], backgroundColor: 'rgba(34, 211, 238, 0.7)' },
+                        { label: 'Support', data: [discountedSupportFee], backgroundColor: 'rgba(16, 185, 129, 0.7)'},
+                        { label: 'Implementation', data: [discountedImplementationFee], backgroundColor: 'rgba(245, 158, 11, 0.7)'}
+                    ];
+                    priceChart.options.scales.x.stacked = true;
+                    priceChart.options.scales.y.stacked = true;
+                    break;
+
+                case 'solutionsBreakdown':
+                    const baseListPrice2 = calculateSolutionsAndAddonsFee() + calculatePlatformAddOnsFee() + calculateAIFee() + calculateUserFee() + calculateSupportFee(calculateSolutionsAndAddonsFee() + calculatePlatformAddOnsFee() + calculateAIFee() + calculateUserFee()) + appState.inputs.implementationServices;
+                    
+                    const competitiveMultiplier2 = (baseListPrice2 > 0) ? annualListPrice / baseListPrice2 : 1;
+                    let finalMultiplier2;
+                    if (appState.chartState.drilldownContext === 'list') {
+                        finalMultiplier2 = competitiveMultiplier2;
+                    } else { // 'discounted'
+                        const effectiveDiscretionaryMultiplier2 = (annualListPrice > 0) ? discountedPrice / annualListPrice : 1;
+                        finalMultiplier2 = effectiveDiscretionaryMultiplier2 * competitiveMultiplier2;
+                    }
+
+                    const breakdownData = [];
+                    const combinedItems = [...appState.inputs.solutions, ...appState.inputs.productAddOns];
+                    combinedItems.forEach(item => {
+                        const platformFee = calculateIndividualItemPlatformFee(item);
+                        const userFeeForItem = calculateUserFee(item);
+                        breakdownData.push({ label: item, value: (platformFee + userFeeForItem) * finalMultiplier2 });
+                    });
+                    labels = breakdownData.map(d => d.label);
+                    datasets = [{ label: 'Price', data: breakdownData.map(d => d.value), backgroundColor: 'rgba(59, 130, 246, 0.7)' }];
+                    priceChart.options.scales.x.stacked = false;
+                    priceChart.options.scales.y.stacked = false;
+                    break;
+                case 'itemDetail':
+                    const baseListPrice3 = calculateSolutionsAndAddonsFee() + calculatePlatformAddOnsFee() + calculateAIFee() + calculateUserFee() + calculateSupportFee(calculateSolutionsAndAddonsFee() + calculatePlatformAddOnsFee() + calculateAIFee() + calculateUserFee()) + appState.inputs.implementationServices;
+                    
+                    const competitiveMultiplier3 = (baseListPrice3 > 0) ? annualListPrice / baseListPrice3 : 1;
+                    let finalMultiplier3;
+                    if (appState.chartState.drilldownContext === 'list') {
+                        finalMultiplier3 = competitiveMultiplier3;
+                    } else { // 'discounted'
+                        const effectiveDiscretionaryMultiplier3 = (annualListPrice > 0) ? discountedPrice / annualListPrice : 1;
+                        finalMultiplier3 = effectiveDiscretionaryMultiplier3 * competitiveMultiplier3;
+                    }
+
+                    const item = chartState.selectedItem;
+                    const itemPlatformFee = calculateIndividualItemPlatformFee(item) * finalMultiplier3;
+                    const itemUserFee = calculateUserFee(item) * finalMultiplier3;
+                    labels = ['Platform Fee', 'User Fee'];
+                    datasets = [{ label: item, data: [itemPlatformFee, itemUserFee], backgroundColor: ['rgba(59, 130, 246, 0.7)', 'rgba(147, 197, 253, 0.7)'] }];
+                    priceChart.options.scales.x.stacked = false;
+                    priceChart.options.scales.y.stacked = false;
+                    break;
+                case 'historicalBreakdown':
+                    const deal = pastDealsData.find(d => d.name === chartState.selectedItem);
+                    if (deal && deal.products) {
+                        const productData = Object.entries(deal.products);
+                        labels = productData.map(p => p[0]);
+                        datasets = [{ label: 'Historical Price', data: productData.map(p => p[1]), backgroundColor: 'rgba(107, 114, 128, 0.5)' }];
+                    }
+                    priceChart.options.scales.x.stacked = false;
+                    priceChart.options.scales.y.stacked = false;
+                    break;
+            }
+            priceChart.data.labels = labels;
+            priceChart.data.datasets = datasets;
+            priceChart.update();
+        }
+
+        function getFteTierDiscount(ftes) {
+            const fteCount = ftes * 1000; // convert from thousands
+            const tier = fteVolumeTiers.find(t => fteCount <= t.max);
+            return tier ? tier.discount : fteVolumeTiers[fteVolumeTiers.length - 1].discount;
+        }
+
+        function updateTrueUpDisplay(annualListPrice, discountedPrice, baseListPrice) {
+            // Visibility
+            const spendVisible = document.getElementById('spend-input-container').style.display !== 'none';
+            const userVisible = document.getElementById('users-input-container').style.display !== 'none';
+            document.getElementById('true-up-spend-row').style.display = spendVisible ? 'grid' : 'none';
+            document.getElementById('true-up-user-row').style.display = userVisible ? 'grid' : 'none';
+
+            // Discount Multipliers
+            const competitiveMultiplier = (baseListPrice > 0) ? annualListPrice / baseListPrice : 1;
+            const discretionaryMultiplier = (annualListPrice > 0) ? discountedPrice / annualListPrice : 1;
+
+            // Tier Indices
+            const spendTierIndex = getTierIndex(true);
+            const fteTierIndex = getTierIndex(false);
+            let userTierIndex = userFeeTiers.findIndex(t => appState.inputs.users <= t.count);
+            if (userTierIndex === -1) userTierIndex = userFeeTiers.length - 1;
+
+            // --- Calculations ---
+
+            // Calculate a single, comprehensive multiplier for all scalable components
+            let totalRelativeMultiplier = 0;
+            appState.inputs.solutions.forEach(sol => {
+                totalRelativeMultiplier += solutionsData[sol]?.relativeValue || 0;
+            });
+            appState.inputs.productAddOns.forEach(addon => {
+                if (productAddOnsData[addon]?.relativeValue) {
+                    totalRelativeMultiplier += productAddOnsData[addon].relativeValue;
+                } else if (addon === 'Vendor Cards') {
+                    totalRelativeMultiplier += (appState.inputs.vendorCard === 'Brex') ? productAddOnsData[addon].brexValue : productAddOnsData[addon].stripeValue;
+                }
+            });
+
+            // Add percentage-based platform add-ons
+            if (appState.inputs.platformAddOns.includes('Sandbox')) {
+                totalRelativeMultiplier *= (1 + (0.05 * appState.inputs.numSandboxes));
+            }
+            if (appState.inputs.platformAddOns.includes('Advanced Controls & Auditability') && !appState.segment.includes('Strat')) {
+                totalRelativeMultiplier *= 1.10;
+            }
+
+            // Add AI Agents based on the reference formula's multiplicative logic
+            if (appState.inputs.platformAddOns.includes('AI Agents')) {
+                const agents = appState.inputs.granularAgents;
+                const selectedAgentTypes = granularAgentTypes.filter(type => agents[type]);
+                const count = selectedAgentTypes.length;
+
+                let aiMultiplier = 1.0;
+                if (agents['Procurement']) aiMultiplier *= 1.30;
+                if (agents['Risk']) aiMultiplier *= 1.30;
+                if (agents['Legal']) aiMultiplier *= 1.30;
+                if (agents['Sourcing']) aiMultiplier *= 1.15;
+                if (agents['Supplier Management']) aiMultiplier *= 1.15;
+
+                let bundleDiscount = 1.0;
+                if (count >= 3) {
+                    bundleDiscount = 0.8;
+                } else if (count === 2) {
+                    bundleDiscount = 0.9;
+                }
+
+                // The AI multiplier is applied to the existing relative value total
+                totalRelativeMultiplier *= (aiMultiplier * bundleDiscount);
+            }
+
+            // 1. Spend True-Up
+            if (spendVisible) {
+                const baseSpendTrueUp = trueUpTiers[spendTierIndex].stratSpend;
+                const listSpendTrueUp = baseSpendTrueUp * totalRelativeMultiplier;
+                const annualListSpendTrueUp = listSpendTrueUp * competitiveMultiplier;
+                document.getElementById('spend-true-up-list').textContent = formatCurrency(annualListSpendTrueUp, false);
+                document.getElementById('spend-true-up-discounted').textContent = formatCurrency(annualListSpendTrueUp * discretionaryMultiplier, false);
+            }
+
+            // 2. FTE True-Up
+            let baseFteTrueUp;
+            const volumeDiscount = getFteTierDiscount(appState.inputs.ftes);
+
+            if (appState.segment === 'NAMER Commercial') {
+                if (appState.inputs.ftes < 2) { // Under 2000 FTEs, use the specific NAMER Commercial slope
+                    baseFteTrueUp = 120.00 * (1 - volumeDiscount);
+                } else { // At or over 2000 FTEs, it mirrors the NAMER Key curve
+                    baseFteTrueUp = trueUpTiers[fteTierIndex].keyFTE * (4/3) * (1 - volumeDiscount);
+                }
+            } else if (appState.segment === 'EMEA Commercial') {
+                 if (appState.inputs.ftes < 2) { // Under 2000 FTEs, use the specific EMEA Commercial slope
+                    baseFteTrueUp = 90.00 * (1 - volumeDiscount);
+                } else { // At or over 2000 FTEs, it mirrors EMEA Key
+                    baseFteTrueUp = trueUpTiers[fteTierIndex].keyFTE * (1-volumeDiscount);
+                }
+            } else if (appState.segment === 'NAMER Key') {
+                baseFteTrueUp = trueUpTiers[fteTierIndex].keyFTE * (4/3) * (1 - volumeDiscount);
+            } else if (appState.segment === 'EMEA Key') {
+                baseFteTrueUp = trueUpTiers[fteTierIndex].keyFTE * (1 - volumeDiscount);
+            } else if (appState.segment.includes('Strat')) {
+                baseFteTrueUp = trueUpTiers[fteTierIndex].stratFTE * (1 - volumeDiscount);
+            }
+            
+            const listFteTrueUp = baseFteTrueUp * totalRelativeMultiplier;
+            const annualListFteTrueUp = listFteTrueUp * competitiveMultiplier;
+
+            document.getElementById('fte-true-up-list').textContent = formatCurrency(annualListFteTrueUp, false);
+            document.getElementById('fte-true-up-discounted').textContent = formatCurrency(annualListFteTrueUp * discretionaryMultiplier, false);
+
+            // 3. User True-Up
+            if (userVisible) {
+                const userDiscount = userFeeTiers[userTierIndex].discount;
+                let listUserTrueUp = 0;
+                appState.inputs.solutions.forEach(sol => {
+                    if (solutionsData[sol].userFee) {
+                        listUserTrueUp += solutionsData[sol].userFee * (1 - userDiscount);
+                    }
+                });
+                const annualListUserTrueUp = listUserTrueUp * competitiveMultiplier;
+                document.getElementById('user-true-up-list').textContent = formatCurrency(annualListUserTrueUp, false);
+                document.getElementById('user-true-up-discounted').textContent = formatCurrency(annualListUserTrueUp * discretionaryMultiplier, false);
+            }
+        }
+
+        function renderModelExplorer() {
+            document.getElementById('model-display').innerHTML = `<div class="bg-white p-6 rounded-lg shadow"><h3 class="text-xl font-semibold mb-3">NAMER Key & Commercial</h3><p class="text-slate-600 mb-4 text-sm">For simplicity and predictability, these segments use a single <strong class="text-blue-600">Platform Fee</strong> based on FTEs. There is no separate User Fee.</p></div><div class="bg-white p-6 rounded-lg shadow"><h3 class="text-xl font-semibold mb-3">All EMEA & NAMER/APAC Strat</h3><p class="text-slate-600 mb-4 text-sm">For our largest customers, pricing has two components: a flexible <strong class="text-blue-600">Platform Fee</strong> (based on Spend or FTEs) and an adoption-friendly <strong class="text-blue-600">User Fee</strong> for active users.</p></div>`;
+        }
+
+        function renderResourceHub() {
+            document.getElementById('resource-content').innerHTML = `<details class="mb-2" open><summary class="font-semibold cursor-pointer py-2 hover:text-blue-600">Key Talk Tracks</summary><div class="pt-2 pl-4 border-l-2 border-slate-200 text-sm space-y-4"><div><p class="font-medium text-slate-800">The 36x ROI Pitch:</p><p class="text-slate-600 italic">"We typically see customers save around 3.6% on their spend managed through Zip. Our pricing for the platform fee is only about 0.1% of that same spend. It's a powerful ROI story."</p></div><div><p class="font-medium text-slate-800">Positioning the User Fee (EMEA & Strat):</p><p class="text-slate-600 italic">"The great thing about our user fee is its flexibility. You don't need to license every employee. We only count users who are actively requesting, approving, or commenting. It removes the risk for you and makes it easy to drive adoption across the company."</p></div></div></details><details class="mb-2"><summary class="font-semibold cursor-pointer py-2 hover:text-blue-600">Rules of Engagement</summary><div class="pt-2 pl-4 border-l-2 border-slate-200 text-sm space-y-4"><div><p class="font-medium text-slate-800">Renewals & True-Ups:</p><p class="text-slate-600">There is a 6-month grace period after go-live before we begin verifying spend and active user counts for true-ups. This gives customers time to ramp up adoption.</p></div><div><p class="font-medium text-slate-800">ELA Positioning:</p><p class="text-slate-600">An Enterprise License Agreement (ELA) can be positioned for large, strategic transformations when a customer wants predictable, all-inclusive pricing and frictionless adoption, especially if their user count is expected to exceed 2/3 of their total FTEs.</p></div></div></details><details><summary class="font-semibold cursor-pointer py-2 hover:text-blue-600">Frequently Asked Questions</summary><div class="pt-2 pl-4 border-l-2 border-slate-200 text-sm space-y-4"><div><p class="font-medium text-slate-800">Why is there both a solution platform fee and a user fee?</p><p class="text-slate-600">For our Strategic and EMEA customers, these two components ensure our pricing is aligned to the value Zip delivers: the platform fee reflects the scale of the problem we’re solving, while the user fee reflects the number of people actively using Zip. This separation makes pricing fair and flexible.</p></div><div><p class="font-medium text-slate-800">Can we start small and expand over time?</p><p class="text-slate-600">Absolutely. The model is designed for both focused initial rollouts and full-scale transformations, so you can begin where you’ll see the most impact and scale seamlessly.</p></div></div></details>`;
+        }
+        
+        function setSegment(segment) {
+            appState.segment = segment;
+            document.getElementById('segment-selector').value = segment;
+            const isStratOrEmea = segment.includes('Strat') || segment.includes('EMEA');
+            document.getElementById('users-input-container').style.display = isStratOrEmea ? 'block' : 'none';
+
+            // Hide spend scope for NAMER Key/Commercial as it's not a pricing input for them
+            const spendContainer = document.getElementById('spend-input-container');
+            if (segment === 'NAMER Key' || segment === 'NAMER Commercial') {
+                spendContainer.style.display = 'none';
+            } else {
+                spendContainer.style.display = 'block';
+            }
+
+            // Update Sandbox labels based on segment
+            const sandboxCheckboxLabel = document.getElementById('sandbox-checkbox-label');
+            const sandboxConfigLabel = document.getElementById('sandbox-config-label');
+            const sandboxNote = document.getElementById('sandbox-note');
+
+            if (segment.includes('Commercial')) {
+                if (sandboxCheckboxLabel) sandboxCheckboxLabel.textContent = 'Sandbox';
+                if (sandboxConfigLabel) sandboxConfigLabel.textContent = '# of Sandboxes:';
+                if (sandboxNote) sandboxNote.textContent = '';
+            } else {
+                if (sandboxCheckboxLabel) sandboxCheckboxLabel.textContent = 'Additional Sandbox';
+                if (sandboxConfigLabel) sandboxConfigLabel.textContent = '# of Additional Sandboxes:';
+                if (sandboxNote) sandboxNote.textContent = 'First Sandbox included free for Enterprise customers';
+            }
+
+            updateCompetitiveDiscount();
+            updateUI();
+        }
+
+        function updateCompetitiveDiscount() {
+            const compDiscount = competitiveScenarios[appState.inputs.competitiveScenario] || 0;
+            const marginDiscount = industryMargins[appState.inputs.industryMargin] || 0;
+            const totalDiscountPercentage = (1 - (1 - compDiscount) * (1 - marginDiscount)) * 100;
+            
+            appState.calculated.competitiveDiscountPercentage = totalDiscountPercentage;
+            document.getElementById('competitive-discount-value').textContent = `${Math.round(totalDiscountPercentage)}%`;
+            updateUI();
+        }
+
+        function setActive(el) {
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        function updateCompetitiveScenarioOptions() {
+            const scenarioSelect = document.getElementById('competitive-scenario');
+            const leadingOption = scenarioSelect.querySelector('option[value="Leading the evaluation"]');
+            const isManagerException = appState.inputs.managerException;
+
+            if (leadingOption) {
+                leadingOption.disabled = !isManagerException;
+            }
+
+            // If manager exception is turned off and "Leading" was selected, revert to default.
+            if (!isManagerException && scenarioSelect.value === 'Leading the evaluation') {
+                scenarioSelect.value = 'Competitive RFP';
+                appState.inputs.competitiveScenario = 'Competitive RFP';
+                updateCompetitiveDiscount(); // This will also call updateUI()
+            }
+        }
+
+        function calculateAnalysisPriceNewModel(segment, fte, solutions, userCount, spendPerFTE) {
+            const defaults = analysisDefaults[segment];
+            // The platform fee calculation is complex and depends on volume tiers.
+            // We reuse the main calculator's function for accuracy.
+            // For segments that use spend, we use the assumed spend per FTE.
+            const spendForAnalysis = defaults.metric === 'Spend' ? (fte / 1000) * (spendPerFTE / 1000000) : 0; 
+            const baseFee = calculateBasePlatformFee(segment, fte / 1000, spendForAnalysis);
+
+            let totalRelativeValue = 0;
+            solutions.forEach(sol => totalRelativeValue += (solutionsData[sol]?.relativeValue || 0));
+            const platformFee = baseFee * totalRelativeValue;
+            
+            let totalUserFee = 0;
+            if (defaults.hasUsers) {
+                totalUserFee = calculateUserFee(solutions, userCount);
+            }
+            
+            return platformFee + totalUserFee;
+        }
+        
+        function runAndRenderAnalysis() {
+            const analysisType = document.getElementById('analysis-model-selector').value;
+            const selectedSegment = document.getElementById('analysis-segment-selector').value;
+            const selectedPlatform = document.getElementById('analysis-platform-selector').value;
+            const fteMin = parseInt(document.getElementById('fte-min').value) || 100;
+            const fteMax = parseInt(document.getElementById('fte-max').value) || 2000;
+            const fteStep = parseInt(document.getElementById('fte-step').value) || 100;
+            const selectedSolutions = Array.from(document.querySelectorAll('#analysis-solutions-checkboxes input:checked')).map(cb => cb.value);
+            const userCount = parseInt(document.getElementById('analysis-user-count').value) || 0;
+            const spendPerFTE = parseInt(document.getElementById('analysis-spend-per-fte').value) || 0;
+
+            document.getElementById('analysis-title').textContent = `Solution Pricing Analysis by FTE Count`;
+
+            const analysisData = { labels: [], datasets: [] };
+            const tableData = [];
+            const tableHeaders = ['FTEs'];
+            const colors = ['#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6', '#EC4899'];
+
+            // Prepare datasets
+            selectedSolutions.forEach((solName, i) => {
+                const color = colors[i % colors.length];
+                if (analysisType !== 'old') {
+                    analysisData.datasets.push({ label: `${solName} (New)`, data: [], borderColor: color, borderWidth: 2, fill: false, tension: 0.1 });
+                    tableHeaders.push(`${solName} (New)`);
+                }
+                if (analysisType !== 'new' && oldModelProducts.includes(solName)) {
+                    analysisData.datasets.push({ label: `${solName} (Old)`, data: [], borderColor: color, borderDash: [5, 5], borderWidth: 2, fill: false, tension: 0.1 });
+                    tableHeaders.push(`${solName} (Old)`);
+                }
+            });
+
+            for (let fte = fteMin; fte <= fteMax; fte += fteStep) {
+                analysisData.labels.push(`${fte}`);
+                const rowData = { fte };
+                let datasetIndex = 0;
+                
+                selectedSolutions.forEach(solName => {
+                     if (analysisType !== 'old') {
+                         const newPrice = calculateAnalysisPriceNewModel(selectedSegment, fte, [solName], userCount, spendPerFTE);
+                         analysisData.datasets[datasetIndex].data.push(newPrice);
+                         rowData[`${solName}_new`] = newPrice;
+                         datasetIndex++;
+                     }
+                    if (analysisType !== 'new' && oldModelProducts.includes(solName)) {
+                        const oldPrice = calculateOldModelPrice(selectedPlatform, [solName], fte);
+                        analysisData.datasets[datasetIndex].data.push(oldPrice);
+                        rowData[`${solName}_old`] = oldPrice;
+                        datasetIndex++;
+                    }
+                });
+                tableData.push(rowData);
+            }
+
+            const tableHead = document.getElementById('analysis-table-head');
+            const tableBody = document.getElementById('analysis-table-body');
+            tableHead.innerHTML = `<tr>${tableHeaders.map(h => `<th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">${h}</th>`).join('')}</tr>`;
+            tableBody.innerHTML = tableData.map(row => {
+                let html = `<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">${row.fte}</td>`;
+                selectedSolutions.forEach(solName => {
+                    if (analysisType !== 'old') html += `<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">${formatCurrency(row[`${solName}_new`], false)}</td>`;
+                    if (analysisType !== 'new' && oldModelProducts.includes(solName)) html += `<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">${formatCurrency(row[`${solName}_old`], false)}</td>`;
+                });
+                return `<tr>${html}</tr>`;
+            }).join('');
+
+            if (analysisChart) analysisChart.destroy();
+            const ctx = document.getElementById('analysis-chart').getContext('2d');
+            analysisChart = new Chart(ctx, {
+                type: 'line',
+                data: analysisData,
+                options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, ticks: { callback: (value) => formatCurrency(value) } } }, plugins: { tooltip: { callbacks: { label: (context) => `${context.dataset.label}: ${formatCurrency(context.parsed.y, false)}` } } } }
+            });
+        }
+
+        function updateConditionalVisibility() {
+            const selectedSolutions = appState.inputs.solutions;
+
+            // 0. Global Reset: If no core solutions are selected, uncheck and deactivate all add-ons.
+            if (selectedSolutions.length === 0) {
+                // Clear state arrays for both product and platform add-ons by finding their checkboxes and clicking them if checked.
+                // This triggers the change event listener which handles state removal correctly.
+                document.querySelectorAll('#addons-checkboxes input, #platform-addons-checkboxes input').forEach(cb => {
+                    if (cb.checked) {
+                        cb.click();
+                    }
+                });
+                // Also reset the vendor card dropdown
+                appState.inputs.vendorCard = 'Stripe';
+                const vendorCardSelect = document.getElementById('vendor-card-select');
+                if (vendorCardSelect) {
+                    vendorCardSelect.value = 'Stripe';
+                }
+            }
+
+            // 1. Calculate which addons SHOULD be visible based on all currently selected solutions
+            const addonsToShow = new Set();
+            selectedSolutions.forEach(solution => {
+                (solutionToAddonMap[solution] || []).forEach(addon => addonsToShow.add(addon));
+            });
+
+            // 2. Iterate through ALL possible product addons to set their state based on visibility rules
+            Object.keys(productAddOnsData).forEach(addonName => {
+                // Skip the special "Remove..." addons which have their own container and logic
+                if (addonName.startsWith('Remove')) return;
+
+                const container = document.getElementById(`addon-container-${addonName.replace(/[\s&]/g, '-')}`);
+                const checkbox = document.getElementById(addonName.replace(/[\s&]/g, '-'));
+                const addonIndex = appState.inputs.productAddOns.indexOf(addonName);
+
+                if (addonsToShow.has(addonName)) {
+                    // This addon should be visible
+                    if (container) container.style.display = 'flex';
+                } else {
+                    // This addon should be hidden and deactivated from the state
+                    if (container) container.style.display = 'none';
+                    if (checkbox && checkbox.checked) {
+                        checkbox.checked = false;
+                    }
+                    if (addonIndex > -1) {
+                        appState.inputs.productAddOns.splice(addonIndex, 1);
+                    }
+                }
+            });
+            
+            // 3. Handle auto-selection for Procure-to-Pay
+            // If manager exception is NOT enabled, P2P forces its add-ons to be selected.
+            if (selectedSolutions.includes('Procure-to-Pay') && !appState.inputs.managerException) {
+                solutionToAddonMap['Procure-to-Pay'].forEach(addonName => {
+                    const checkbox = document.getElementById(addonName.replace(/[\s&]/g, '-'));
+                    const addonIndex = appState.inputs.productAddOns.indexOf(addonName);
+                    if (checkbox && !checkbox.checked) {
+                        checkbox.checked = true;
+                         if (addonIndex === -1) {
+                            appState.inputs.productAddOns.push(addonName);
+                        }
+                    }
+                });
+            }
+
+            // 3.5 NEW LOGIC: If Procure-to-Pay is checked, PO Management becomes unchecked as it's included.
+            if (selectedSolutions.includes('Procure-to-Pay')) {
+                const poAddon = 'PO Management';
+                const poCheckbox = document.getElementById(poAddon.replace(/[\s&]/g, '-'));
+                const poIndex = appState.inputs.productAddOns.indexOf(poAddon);
+
+                if (poCheckbox && poCheckbox.checked) {
+                    poCheckbox.checked = false;
+                }
+                if (poIndex > -1) {
+                    appState.inputs.productAddOns.splice(poIndex, 1);
+                }
+            }
+
+            // 4. Handle visibility and state for the "Remove..." addons
+            const removeContainer = document.getElementById('remove-solutions-container');
+            if (removeContainer) {
+                 if (selectedSolutions.includes('Intake-to-Procure') && appState.inputs.managerException) {
+                    removeContainer.style.display = 'block';
+                } else {
+                    removeContainer.style.display = 'none';
+                    // If container is hidden, ensure these options are deactivated by triggering their change event
+                    ['remove-savings', 'remove-renewals'].forEach(id => {
+                        const checkbox = document.getElementById(id);
+                        if (checkbox && checkbox.checked) {
+                            checkbox.checked = false;
+                            checkbox.dispatchEvent(new Event('change'));
+                        }
+                    });
+                }
+            }
+
+
+            // 5. Handle Advanced Controls for Strat customers (free & included)
+            const advControlsAddon = 'Advanced Controls & Auditability';
+            const advControlsCheckbox = document.getElementById(advControlsAddon.replace(/[\s&]/g, '-'));
+
+            if (advControlsCheckbox) {
+                const advControlsIndex = appState.inputs.platformAddOns.indexOf(advControlsAddon);
+
+                if (appState.segment.includes('Strat') && appState.inputs.solutions.length > 0) {
+                    // For Strat customers with a core solution, this is included.
+                    if (!advControlsCheckbox.checked) {
+                         advControlsCheckbox.checked = true;
+                         if (advControlsIndex === -1) {
+                            appState.inputs.platformAddOns.push(advControlsAddon);
+                        }
+                    }
+                    advControlsCheckbox.disabled = false;
+                } else {
+                    // For non-Strat, or Strat with no core solution, it's optional.
+                    // If it was auto-checked because the conditions were previously met, uncheck it now.
+                    if (appState.segment.includes('Strat')) { // Only act if we are in a Strat segment
+                        if (advControlsCheckbox.checked){
+                            advControlsCheckbox.checked = false;
+                            if (advControlsIndex > -1) {
+                                appState.inputs.platformAddOns.splice(advControlsIndex, 1);
+                            }
+                        }
+                    }
+                    advControlsCheckbox.disabled = false;
+                }
+            }
+
+            // 6. Sync config UI visibility with final state
+            const configsToSync = {
+                'AI Agents': document.getElementById('ai-agents-config'),
+                'Catalogs': document.getElementById('catalogs-config'),
+                'Vendor Cards': document.getElementById('vendor-cards-config'),
+                'Sandbox': document.getElementById('sandbox-config'),
+                'Integrations': document.getElementById('integrations-config')
+            };
+            
+            Object.keys(configsToSync).forEach(addonName => {
+                const configElement = configsToSync[addonName];
+                if (configElement) {
+                    const isSelected = appState.inputs.productAddOns.includes(addonName) || appState.inputs.platformAddOns.includes(addonName);
+                    configElement.classList.toggle('hidden', !isSelected);
+                }
+            });
+        }
+
+        // =======================
+        // CSV Upload Logic
+        // =======================
+        function handleFile(file) {
+            if (file.type !== 'text/csv') {
+                alert('Please upload a valid CSV file.');
+                return;
+            }
+            document.getElementById('fileName').textContent = `File: ${file.name}`;
+            document.getElementById('deal-filters-container').classList.remove('hidden');
+            Papa.parse(file, {
+                header: true,
+                skipEmptyLines: true,
+                transformHeader: header => header.trim(),
+                complete: (results) => {
+                    processUploadedData(results.data);
+                },
+                error: (error) => console.error('Error parsing CSV:', error)
+            });
+        }
+
+        function processUploadedData(data) {
+            const newDeals = {};
+            const accountNameCol = 'Account Name';
+            const productNameCol = 'Account Product: Account Products Name';
+            const arrCol = 'Product ARR';
+            const segmentCol = 'Account Segment';
+            const fteCol = 'Number of Employees (Best)';
+            const userCol = 'Active Zip Users';
+            const industryCol = 'K - Vertical Group';
+
+            data.forEach(row => {
+                const accountName = row[accountNameCol]?.trim();
+                if (!accountName) return;
+
+                if (!newDeals[accountName]) {
+                    let ftesRaw = parseFloat(row[fteCol]) || 0;
+                    let usersRaw = parseFloat(row[userCol]) || 0;
+                    if (usersRaw > ftesRaw) {
+                        usersRaw = ftesRaw;
+                    }
+
+                    newDeals[accountName] = {
+                        name: accountName,
+                        segment: row[segmentCol]?.trim() || 'N/A',
+                        industry: row[industryCol]?.trim() || 'N/A',
+                        ftes: ftesRaw / 1000,
+                        users: usersRaw,
+                        solutions: [],
+                        productAddOns: [],
+                        platformAddOns: [],
+                        historical: 0,
+                        products: {}
+                    };
+                }
+                
+                const productName = row[productNameCol]?.trim();
+                const productARR = parseFloat(String(row[arrCol] || '').replace(/[^0-9.-]+/g,"")) || 0;
+                newDeals[accountName].historical += productARR;
+                
+                if (productName && productARR > 0) {
+                    newDeals[accountName].products[productName] = (newDeals[accountName].products[productName] || 0) + productARR;
+                    if (solutionsData[productName]) newDeals[accountName].solutions.push(productName);
+                    else if (productAddOnsData[productName]) newDeals[accountName].productAddOns.push(productName);
+                    else if (platformAddOnsData[productName]) newDeals[accountName].platformAddOns.push(productName);
+                }
+            });
+            
+            pastDealsData = [...pastDealsData, ...Object.values(newDeals)];
+            updateDealFilters();
+            updateDealSelector();
+        }
+
+        function updateDealFilters() {
+            const segmentFilter = document.getElementById('deal-filter-segment');
+            const industryFilter = document.getElementById('deal-filter-industry');
+
+            const segments = [...new Set(pastDealsData.map(d => d.segment))].sort();
+            const industries = [...new Set(pastDealsData.map(d => d.industry))].sort();
+
+            segmentFilter.innerHTML = '<option>All</option>';
+            industryFilter.innerHTML = '<option>All</option>';
+
+            segments.forEach(s => segmentFilter.add(new Option(s,s)));
+            industries.forEach(i => industryFilter.add(new Option(i,i)));
+        }
+
+        function updateDealSelector() {
+            const dealSelector = document.getElementById('deal-examples');
+            const segmentFilter = document.getElementById('deal-filter-segment').value;
+            const industryFilter = document.getElementById('deal-filter-industry').value;
+
+            while (dealSelector.options.length > 1) {
+                dealSelector.remove(1);
+            }
+
+            const filteredDeals = pastDealsData.filter(deal => {
+                const segmentMatch = segmentFilter === 'All' || deal.segment === segmentFilter;
+                const industryMatch = industryFilter === 'All' || deal.industry === industryFilter;
+                return segmentMatch && industryMatch;
+            });
+
+            filteredDeals.forEach(deal => {
+                dealSelector.add(new Option(deal.name, deal.name));
+            });
+        }
+
+        // =======================
+        // DOMContentLoaded - Main Setup
+        // =======================
+        document.addEventListener('DOMContentLoaded', () => {
+            const ui = {
+                spendSlider: document.getElementById('spend'), ftesSlider: document.getElementById('ftes'), usersSlider: document.getElementById('users'), discountSlider: document.getElementById('discount'),
+                spendValue: document.getElementById('spend-value'), ftesValue: document.getElementById('ftes-value'), usersValue: document.getElementById('users-value'), discountValue: document.getElementById('discount-value'),
+                solutionsContainer: document.getElementById('solutions-checkboxes'), productAddOnsContainer: document.getElementById('addons-checkboxes'), platformAddOnsContainer: document.getElementById('platform-addons-checkboxes'),
+                addonConfigsContainer: document.getElementById('addon-configs'), platformAddonConfigsContainer: document.getElementById('platform-addon-configs'),
+                dealSelector: document.getElementById('deal-examples'), segmentSelector: document.getElementById('segment-selector'), existingAcvInput: document.getElementById('existing-acv'),
+                existingAcvContainer: document.getElementById('existing-acv-container'),
+                dealFiltersContainer: document.getElementById('deal-filters-container'),
+                competitiveScenarioSelect: document.getElementById('competitive-scenario'), industryMarginSelect: document.getElementById('industry-margin'),
+                customerTypeSelect: document.getElementById('customer-type'),
+                currencySelector: document.getElementById('currency-selector'),
+                curveVersionSelector: document.getElementById('curve-version-selector'),
+                aiAgentsConfig: document.getElementById('ai-agents-config'), aiCredits: document.getElementById('ai-credits'),
+                aiManagerException: document.getElementById('manager-exception-ai'), 
+                aiManagerExceptionContainer: document.getElementById('ai-manager-exception-container'),
+                granularAiAgentsContainer: document.getElementById('granular-ai-agents'),
+                aiDiscountContainer: document.getElementById('ai-discount-container'), aiDiscountSlider: document.getElementById('ai-discount'), aiDiscountValue: document.getElementById('ai-discount-value'),
+                supportTierSelect: document.getElementById('support-tier'), implementationServicesInput: document.getElementById('implementation-services'),
+                chartBackBtn: document.getElementById('chart-back-btn'),
+                analysisModelSelector: document.getElementById('analysis-model-selector'), analysisNewModelControls: document.getElementById('analysis-new-model-controls'),
+                analysisOldModelControls: document.getElementById('analysis-old-model-controls'), analysisSegmentSelector: document.getElementById('analysis-segment-selector'),
+                analysisSolutionsContainer: document.getElementById('analysis-solutions-checkboxes'), updateAnalysisBtn: document.getElementById('update-analysis-btn'),
+                csvFileInput: document.getElementById('csvFileInput'),
+                dealFilterSegment: document.getElementById('deal-filter-segment'),
+                dealFilterIndustry: document.getElementById('deal-filter-industry'),
+                managerExceptionBtn: document.getElementById('manager-exception-btn'),
+                managerModal: document.getElementById('manager-modal'),
+                confirmExceptionBtn: document.getElementById('confirm-exception-btn'),
+                cancelExceptionBtn: document.getElementById('cancel-exception-btn'),
+                approvalModal: document.getElementById('approval-modal'),
+                acknowledgeApprovalBtn: document.getElementById('acknowledge-approval-btn'),
+                overallDiscountContainer: document.getElementById('overall-discount-container'),
+                additionalAgentsPrlToggle: document.getElementById('additional-agents-prl-toggle'),
+                additionalAgentsPrlConfig: document.getElementById('additional-agents-prl-config'),
+                additionalAgentsPrlCount: document.getElementById('additional-agents-prl-count'),
+                additionalAgentsSsmToggle: document.getElementById('additional-agents-ssm-toggle'),
+                additionalAgentsSsmConfig: document.getElementById('additional-agents-ssm-config'),
+                additionalAgentsSsmCount: document.getElementById('additional-agents-ssm-count'),
+                analysisUserCount: document.getElementById('analysis-user-count'),
+                analysisSpendPerFTEContainer: document.getElementById('analysis-spend-per-fte-container'),
+            };
+
+            segments.forEach(seg => { ui.segmentSelector.add(new Option(seg, seg)); ui.analysisSegmentSelector.add(new Option(seg, seg)); });
+            Object.keys(competitiveScenarios).forEach(s => ui.competitiveScenarioSelect.add(new Option(s,s)));
+            Object.keys(industryMargins).forEach(m => ui.industryMarginSelect.add(new Option(m,m)));
+            Object.keys(supportTiers).forEach(t => ui.supportTierSelect.add(new Option(t,t)));
+            Object.keys(exchangeRates).forEach(c => ui.currencySelector.add(new Option(c,c)));
+            updateDealFilters();
+            updateDealSelector();
+
+            function createCheckbox(container, id, value, stateArray, isAddon = false) {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'flex items-center justify-between';
+                if (isAddon) {
+                    wrapper.id = `addon-container-${id.replace(/[\s&]/g, '-')}`;
+                }
+
+                const mainLabel = document.createElement('div');
+                mainLabel.className = 'flex items-center';
+
+                const checkbox = document.createElement('input'); 
+                checkbox.type = 'checkbox'; 
+                checkbox.id = id.replace(/[\s&]/g, '-'); 
+                checkbox.value = value; 
+                checkbox.className = 'h-4 w-4 text-blue-600 border-slate-300 rounded focus:ring-blue-500'; 
+                checkbox.checked = stateArray.includes(value);
+                checkbox.addEventListener('change', (e) => {
+                    appState.userInteracted = true;
+                    const idx = stateArray.indexOf(value);
+                    if (e.target.checked) { 
+                        if (idx === -1) stateArray.push(value); 
+                    } else { 
+                        if (idx > -1) stateArray.splice(idx, 1); 
+                    }
+                    
+                    ui.dealSelector.value = 'none'; 
+                    updateUI();
+                });
+                
+                const label = document.createElement('label'); 
+                label.htmlFor = id.replace(/[\s&]/g, '-'); 
+                label.textContent = value; 
+                label.className = 'ml-2 text-slate-700';
+
+                if (value === 'Sandbox') {
+                    label.id = 'sandbox-checkbox-label';
+                }
+                
+                mainLabel.appendChild(checkbox); 
+                mainLabel.appendChild(label);
+                wrapper.appendChild(mainLabel);
+
+                if (appState.inputs.managerException) {
+                     if (solutionsData[value] || productAddOnsData[value] || platformAddOnsData[value]) {
+                         if (value === 'AI Agents') {
+                             const note = document.createElement('span');
+                             note.className = 'text-xs italic text-slate-500 pr-2';
+                             note.textContent = 'see separate AI discount';
+                             wrapper.appendChild(note);
+                         } else {
+                             const discountContainer = document.createElement('div');
+                             discountContainer.className = 'flex items-center space-x-2';
+                             const discountInput = document.createElement('input');
+                             discountInput.type = 'range';
+                             discountInput.min = 0;
+                             discountInput.max = 80;
+                             discountInput.value = appState.inputs.lineItemDiscounts[value] || 0;
+                             discountInput.className = 'w-24 h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer slider-thumb';
+                             discountInput.addEventListener('input', (e) => {
+                                 appState.inputs.lineItemDiscounts[value] = parseInt(e.target.value);
+                                 e.target.nextElementSibling.textContent = `${e.target.value}%`;
+                                 updateUI();
+                             });
+                             const discountValue = document.createElement('span');
+                             discountValue.className = 'font-semibold text-red-600 w-12 text-center';
+                             discountValue.textContent = `${discountInput.value}%`;
+                             discountContainer.appendChild(discountInput);
+                             discountContainer.appendChild(discountValue);
+                             wrapper.appendChild(discountContainer);
+                         }
+                    }
+                }
+                
+                container.appendChild(wrapper);
+            }
+            
+            function populateCheckboxes() {
+                ui.solutionsContainer.innerHTML = '';
+                ui.productAddOnsContainer.innerHTML = '';
+                ui.platformAddOnsContainer.innerHTML = '';
+                Object.keys(solutionsData).forEach(sol => createCheckbox(ui.solutionsContainer, sol, sol, appState.inputs.solutions));
+                Object.keys(productAddOnsData).filter(p => !p.startsWith('Remove')).forEach(addon => createCheckbox(ui.productAddOnsContainer, addon, addon, appState.inputs.productAddOns, true));
+                Object.keys(platformAddOnsData).filter(p => p !== 'Platform').forEach(addon => createCheckbox(ui.platformAddOnsContainer, addon, addon, appState.inputs.platformAddOns));
+            }
+            
+            ui.addonConfigsContainer.innerHTML = `<div id="remove-solutions-container" class="space-y-1 text-sm"><div class="flex items-center"><input type="checkbox" id="remove-savings" class="h-4 w-4"><label for="remove-savings" class="ml-2 text-slate-600">Remove Savings (from Intake-to-Procure)</label></div><div class="flex items-center"><input type="checkbox" id="remove-renewals" class="h-4 w-4"><label for="remove-renewals" class="ml-2 text-slate-600">Remove Renewals (from Intake-to-Procure)</label></div></div><div id="catalogs-config" class="hidden"><label class="text-sm"># of Suppliers:</label><input type="number" id="catalogs-suppliers" value="0" class="w-20 ml-2 text-sm rounded-md border-slate-300"></div><div id="vendor-cards-config" class="hidden"><label class="text-sm">Provider:</label><select id="vendor-card-select" class="w-24 ml-2 text-sm rounded-md border-slate-300"><option>Stripe</option><option>Brex</option></select></div>`;
+            ui.platformAddonConfigsContainer.innerHTML = `<div id="sandbox-config" class="hidden flex items-center"><label id="sandbox-config-label" class="text-sm"># of Sandboxes:</label><input type="number" id="num-sandboxes" value="0" class="w-20 ml-2 text-sm rounded-md border-slate-300"><span id="sandbox-note" class="text-xs italic text-slate-500 ml-2"></span></div><div id="integrations-config" class="hidden"><label class="text-sm"># of Integrations:</label><input type="number" id="num-integrations" value="0" class="w-20 ml-2 text-sm rounded-md border-slate-300"></div>`;
+            granularAgentTypes.forEach(type => {
+                const div = document.createElement('div');
+                div.className = 'flex items-center';
+                div.innerHTML = `<input type="checkbox" id="agent-${type}" data-type="${type}" class="agent-input h-4 w-4 text-blue-600 border-slate-300 rounded focus:ring-blue-500"><label for="agent-${type}" class="ml-2 text-sm font-medium text-slate-700">${type} Agent Module - up to 3 agents</label>`;
+                ui.granularAiAgentsContainer.appendChild(div);
+            });
+
+            function addSliderListener(slider, valueEl, stateKey, isFloat, suffix, prefix = '') {
+                const initialMax = parseFloat(slider.max);
+                const initialStep = parseFloat(slider.step);
+                const absoluteMax = stateKey === 'spend' ? 1000000 : stateKey === 'ftes' ? 10000 : parseFloat(slider.max);
+
+                slider.addEventListener('input', (e) => {
+                    appState.userInteracted = true;
+                    const val = isFloat ? parseFloat(e.target.value) : parseInt(e.target.value);
+                    appState.inputs[stateKey] = val;
+
+                    if (isFloat) {
+                        valueEl.textContent = `${prefix}${val.toFixed(3)}${suffix}`;
+                    } else {
+                        valueEl.textContent = `${prefix}${val}${suffix}`;
+                    }
+
+                    // --- DYNAMIC SLIDER LOGIC ---
+                    const currentMax = parseFloat(slider.max);
+                    if (val >= currentMax * 0.98 && currentMax < absoluteMax) {
+                        slider.max = currentMax * 10;
+                         if(stateKey === 'spend') slider.step = parseFloat(slider.step) * 5; 
+                    } else if (val < currentMax * 0.09 && currentMax > initialMax) {
+                        slider.max = currentMax / 10;
+                        if(stateKey === 'spend') slider.step = parseFloat(slider.step) / 5; 
+                    }
+
+                    // --- DEPENDENT SLIDER LOGIC ---
+                    if (stateKey === 'spend') {
+                        const isOff = val === 0;
+                        slider.classList.toggle('opacity-50', isOff);
+                        valueEl.classList.toggle('text-slate-400', isOff);
+                        valueEl.classList.toggle('text-blue-600', !isOff);
+                    } else if (stateKey === 'ftes') {
+                        const maxUsers = val * 1000;
+                        ui.usersSlider.max = maxUsers; // Dynamically set the max for the users slider
+                        if (appState.inputs.users > maxUsers) {
+                            appState.inputs.users = maxUsers;
+                            ui.usersSlider.value = maxUsers;
+                            ui.usersValue.textContent = maxUsers;
+                        }
+                    } else if (stateKey === 'users') {
+                        const maxUsers = appState.inputs.ftes * 1000;
+                        if (val > maxUsers) {
+                            appState.inputs.users = maxUsers;
+                            slider.value = maxUsers;
+                            valueEl.textContent = maxUsers;
+                        }
+                    }
+
+                    if (stateKey !== 'overallDiscount' && stateKey !== 'aiDiscount') ui.dealSelector.value = 'none';
+                    updateUI();
+                });
+            }
+            addSliderListener(ui.spendSlider, ui.spendValue, 'spend', false, 'M', '$');
+            addSliderListener(ui.ftesSlider, ui.ftesValue, 'ftes', true, 'k');
+            addSliderListener(ui.usersSlider, ui.usersValue, 'users', false, '');
+            addSliderListener(ui.discountSlider, ui.discountValue, 'overallDiscount', false, '%');
+            addSliderListener(ui.aiDiscountSlider, ui.aiDiscountValue, 'aiDiscount', false, '%');
+
+            function makeEditable(valueEl, sliderEl, stateKey, options = {}) {
+                const { isFloat = false, inputMultiplier = 1, stateMultiplier = 1 } = options;
+
+                valueEl.addEventListener('click', () => {
+                    const originalStateValue = appState.inputs[stateKey];
+                    const inputEl = document.createElement('input');
+                    inputEl.type = 'number';
+                    inputEl.className = 'editable-input';
+                    inputEl.value = originalStateValue * inputMultiplier;
+                    if (isFloat) inputEl.step = 'any';
+
+                    valueEl.replaceWith(inputEl);
+                    inputEl.focus();
+                    inputEl.select();
+
+                    const saveChanges = () => {
+                        appState.userInteracted = true;
+                        let inputValue = isFloat ? parseFloat(inputEl.value) : parseInt(inputEl.value);
+                        if (isNaN(inputValue)) {
+                            inputValue = originalStateValue * inputMultiplier; // Revert if invalid
+                        }
+
+                        let newStateValue = inputValue * stateMultiplier;
+
+                        // Clamp to slider min/max
+                        const min = parseFloat(sliderEl.min);
+                        let max = parseFloat(sliderEl.max);
+                        
+                        // If new value exceeds max, expand the slider
+                        if (newStateValue > max) {
+                           sliderEl.max = newStateValue * 1.2;
+                        }
+                        
+                        newStateValue = Math.max(min, Math.min(parseFloat(sliderEl.max), newStateValue));
+                        
+                        appState.inputs[stateKey] = newStateValue;
+                        sliderEl.value = newStateValue;
+                        
+                        // Manually trigger the input event on the slider to update the text and handle dependent logic
+                        sliderEl.dispatchEvent(new Event('input'));
+                        
+                        inputEl.replaceWith(valueEl);
+                        // updateUI is called by the slider's event listener
+                    };
+
+                    inputEl.addEventListener('blur', saveChanges);
+                    inputEl.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter') {
+                            inputEl.blur();
+                        } else if (e.key === 'Escape') {
+                            sliderEl.value = originalStateValue;
+                            appState.inputs[stateKey] = originalStateValue;
+                            sliderEl.dispatchEvent(new Event('input')); // Update text
+                            inputEl.replaceWith(valueEl);
+                        }
+                    });
+                });
+            }
+            
+            ui.csvFileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
+            ui.segmentSelector.addEventListener('change', (e) => {
+                appState.userInteracted = true;
+                setSegment(e.target.value);
+            });
+            ui.customerTypeSelect.addEventListener('change', e => { 
+                appState.userInteracted = true;
+                appState.inputs.customerType = e.target.value; 
+                ui.existingAcvContainer.classList.toggle('hidden', e.target.value !== 'Existing Customer');
+                updateUI(); 
+            });
+            ui.currencySelector.addEventListener('change', (e) => {
+                appState.userInteracted = true;
+                appState.inputs.currency = e.target.value;
+                appState.calculated.exchangeRate = exchangeRates[e.target.value].rate;
+                updateUI();
+            });
+            ui.curveVersionSelector.addEventListener('change', (e) => {
+                appState.curveVersion = e.target.value;
+                appState.userInteracted = true;
+                updateUI();
+            });
+            ui.existingAcvInput.addEventListener('input', (e) => {
+                appState.userInteracted = true;
+                appState.inputs.existingACV = parseFloat(e.target.value) || 0;
+                ui.dealSelector.value = 'none';
+                updateUI();
+            });
+            ui.competitiveScenarioSelect.addEventListener('change', e => {
+                appState.userInteracted = true;
+                appState.inputs.competitiveScenario = e.target.value;
+                updateCompetitiveDiscount();
+            });
+            ui.industryMarginSelect.addEventListener('change', e => {
+                appState.userInteracted = true;
+                appState.inputs.industryMargin = e.target.value;
+                updateCompetitiveDiscount();
+            });
+            ui.dealFilterSegment.addEventListener('change', updateDealSelector);
+            ui.dealFilterIndustry.addEventListener('change', updateDealSelector);
+            document.getElementById('remove-savings').addEventListener('change', e => { appState.userInteracted = true; const addonName = 'Remove Savings', index = appState.inputs.productAddOns.indexOf(addonName); if (e.target.checked && index === -1) appState.inputs.productAddOns.push(addonName); else if (!e.target.checked && index > -1) appState.inputs.productAddOns.splice(index, 1); updateUI(); });
+            document.getElementById('remove-renewals').addEventListener('change', e => { appState.userInteracted = true; const addonName = 'Remove Renewals', index = appState.inputs.productAddOns.indexOf(addonName); if (e.target.checked && index === -1) appState.inputs.productAddOns.push(addonName); else if (!e.target.checked && index > -1) appState.inputs.productAddOns.splice(index, 1); updateUI(); });
+            document.getElementById('catalogs-suppliers').addEventListener('input', e => { appState.userInteracted = true; appState.inputs.catalogsSuppliers = parseInt(e.target.value) || 0; updateUI(); });
+            document.getElementById('vendor-card-select').addEventListener('change', e => { appState.userInteracted = true; appState.inputs.vendorCard = e.target.value; updateUI(); });
+            document.getElementById('num-sandboxes').addEventListener('input', e => { appState.userInteracted = true; appState.inputs.numSandboxes = parseInt(e.target.value) || 0; updateUI(); });
+            document.getElementById('num-integrations').addEventListener('input', e => { appState.userInteracted = true; appState.inputs.numIntegrations = parseInt(e.target.value) || 0; updateUI(); });
+            ui.aiCredits.addEventListener('input', (e) => { appState.userInteracted = true; appState.inputs.aiCreditPacks = parseInt(e.target.value) || 0; updateUI(); });
+            ui.aiManagerException.addEventListener('change', e => { appState.userInteracted = true; appState.inputs.aiManagerException = e.target.checked; ui.aiDiscountContainer.classList.toggle('hidden', !e.target.checked); updateUI(); });
+            document.querySelectorAll('.agent-input').forEach(input => input.addEventListener('change', e => { appState.userInteracted = true; appState.inputs.granularAgents[e.target.dataset.type] = e.target.checked ? 1 : 0; updateUI(); }));
+            ui.supportTierSelect.addEventListener('change', e => { appState.userInteracted = true; appState.inputs.supportTier = e.target.value; updateUI(); });
+            ui.implementationServicesInput.addEventListener('input', e => { appState.userInteracted = true; appState.inputs.implementationServices = parseFloat(e.target.value) || 0; updateUI(); });
+            ui.dealSelector.addEventListener('change', (e) => { 
+                appState.userInteracted = true;
+                if (e.target.value === 'none') {
+                    ui.dealFiltersContainer.classList.add('hidden');
+                    return; 
+                }
+                ui.dealFiltersContainer.classList.remove('hidden');
+                ui.existingAcvContainer.classList.remove('hidden');
+                const deal = pastDealsData.find(d => d.name === e.target.value); 
+                setSegment(deal.segment); 
+                ui.spendSlider.value = deal.spend || 0; 
+                ui.ftesSlider.value = deal.ftes || 0; 
+                ui.usersSlider.value = deal.users || 0; 
+                ui.spendValue.textContent = `$${deal.spend || 0}M`; 
+                ui.ftesValue.textContent = `${(deal.ftes || 0).toFixed(3)}k`; 
+                ui.usersValue.textContent = `${deal.users || 0}`; 
+                appState.inputs.spend = deal.spend || 0; 
+                appState.inputs.ftes = deal.ftes || 0; 
+                appState.inputs.users = deal.users || 0; 
+                appState.inputs.solutions = [...deal.solutions]; 
+                appState.inputs.productAddOns = [...deal.productAddOns]; 
+                appState.inputs.platformAddOns = [...deal.platformAddOns]; 
+                appState.inputs.existingACV = deal.historical; 
+                ui.existingAcvInput.value = deal.historical; 
+                document.querySelectorAll('#solutions-checkboxes input, #addons-checkboxes input, #platform-addons-checkboxes input').forEach(cb => { cb.checked = appState.inputs.solutions.includes(cb.value) || appState.inputs.productAddOns.includes(cb.value) || appState.inputs.platformAddOns.includes(cb.value); }); 
+                updateUI(); 
+            });
+            ui.chartBackBtn.addEventListener('click', () => { if (appState.chartState.history.length > 0) { appState.chartState = appState.chartState.history.pop(); updateUI(); } });
+            
+            // Additional Agents Listeners
+            ui.additionalAgentsPrlToggle.addEventListener('change', e => {
+                appState.userInteracted = true;
+                const isChecked = e.target.checked;
+                ui.additionalAgentsPrlConfig.classList.toggle('hidden', !isChecked);
+                if (!isChecked) {
+                    appState.inputs.additionalAgentsPRL = 0;
+                    ui.additionalAgentsPrlCount.value = 0;
+                }
+                updateUI();
+            });
+            ui.additionalAgentsPrlCount.addEventListener('input', e => {
+                appState.userInteracted = true;
+                appState.inputs.additionalAgentsPRL = parseInt(e.target.value) || 0;
+                updateUI();
+            });
+            ui.additionalAgentsSsmToggle.addEventListener('change', e => {
+                appState.userInteracted = true;
+                const isChecked = e.target.checked;
+                ui.additionalAgentsSsmConfig.classList.toggle('hidden', !isChecked);
+                 if (!isChecked) {
+                    appState.inputs.additionalAgentsSSM = 0;
+                    ui.additionalAgentsSsmCount.value = 0;
+                }
+                updateUI();
+            });
+            ui.additionalAgentsSsmCount.addEventListener('input', e => {
+                appState.userInteracted = true;
+                appState.inputs.additionalAgentsSSM = parseInt(e.target.value) || 0;
+                updateUI();
+            });
+
+            // Manager Exception Logic
+            ui.managerExceptionBtn.addEventListener('click', () => {
+                appState.userInteracted = true;
+                if (appState.inputs.managerException) {
+                    appState.inputs.managerException = false;
+                    ui.managerExceptionBtn.textContent = 'Manager Exception';
+                    ui.managerExceptionBtn.classList.remove('bg-red-500', 'hover:bg-red-600');
+                    ui.managerExceptionBtn.classList.add('bg-amber-500', 'hover:bg-amber-600');
+                    ui.overallDiscountContainer.classList.remove('hidden');
+                    ui.aiManagerExceptionContainer.classList.add('hidden');
+                    document.getElementById('competitive-discount-container').classList.add('hidden');
+                    populateCheckboxes(); // Repopulate to remove line-item discounts
+                    updateCompetitiveScenarioOptions();
+                    updateUI();
+                } else {
+                    ui.managerModal.classList.remove('hidden');
+                }
+            });
+            ui.cancelExceptionBtn.addEventListener('click', () => ui.managerModal.classList.add('hidden'));
+            ui.confirmExceptionBtn.addEventListener('click', () => {
+                appState.userInteracted = true;
+                appState.inputs.managerException = true;
+                ui.managerModal.classList.add('hidden');
+                ui.managerExceptionBtn.textContent = 'Disable Exception Mode';
+                ui.managerExceptionBtn.classList.add('bg-red-500', 'hover:bg-red-600');
+                ui.managerExceptionBtn.classList.remove('bg-amber-500', 'hover:bg-amber-600');
+                ui.overallDiscountContainer.classList.add('hidden');
+                ui.aiManagerExceptionContainer.classList.remove('hidden');
+                document.getElementById('competitive-discount-container').classList.remove('hidden');
+
+                if (appState.inputs.platformAddOns.includes('AI Agents')) {
+                    ui.aiManagerException.checked = true;
+                    appState.inputs.aiManagerException = true;
+                    ui.aiDiscountContainer.classList.remove('hidden');
+                }
+
+                populateCheckboxes(); // Repopulate to add line-item discounts
+                updateCompetitiveScenarioOptions();
+                updateUI();
+            });
+
+            ui.acknowledgeApprovalBtn.addEventListener('click', () => {
+                ui.approvalModal.classList.add('hidden');
+            });
+
+            // --- Analysis Section Listeners ---
+            function populateAnalysisCheckboxes() {
+                ui.analysisSolutionsContainer.innerHTML = '';
+                const analysisType = ui.analysisModelSelector.value;
+                let solutionsToShow = (analysisType === 'old') ? oldModelProducts : Object.keys(solutionsData);
+                solutionsToShow.forEach(sol => {
+                    if (analysisType === 'compare' && !oldModelProducts.includes(sol)) return;
+                    const div = document.createElement('div'); div.className = 'flex items-center';
+                    div.innerHTML = `<input type="checkbox" id="analysis-${sol}" value="${sol}" class="h-4 w-4" checked><label for="analysis-${sol}" class="ml-2">${sol}</label>`;
+                    ui.analysisSolutionsContainer.appendChild(div);
+                });
+            }
+
+            function updateAnalysisSegment() {
+                const segment = ui.analysisSegmentSelector.value;
+                const defaults = analysisDefaults[segment];
+                document.getElementById('analysis-user-count-container').style.display = defaults.hasUsers ? 'block' : 'none';
+                ui.analysisSpendPerFTEContainer.style.display = defaults.metric === 'Spend' ? 'block' : 'none';
+            }
+
+            ui.analysisModelSelector.addEventListener('change', () => {
+                const type = ui.analysisModelSelector.value;
+                ui.analysisNewModelControls.classList.toggle('hidden', type === 'old');
+                ui.analysisOldModelControls.classList.toggle('hidden', type === 'new');
+                populateAnalysisCheckboxes();
+            });
+            ui.updateAnalysisBtn.addEventListener('click', runAndRenderAnalysis);
+            ui.analysisSegmentSelector.addEventListener('change', updateAnalysisSegment);
+             ui.analysisUserCount.addEventListener('input', runAndRenderAnalysis);
+
+
+            const ctx = document.getElementById('price-chart').getContext('2d');
+            priceChart = new Chart(ctx, {
+                type: 'bar', data: {},
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    scales: { x: { stacked: true }, y: { stacked: true, beginAtZero: true, ticks: { callback: (value) => formatCurrency(value) } } },
+                    plugins: { tooltip: { callbacks: { label: (context) => `${context.dataset.label || ''}: ${formatCurrency(context.parsed.y)}` } } },
+                    onClick: (e) => {
+                        const activePoints = priceChart.getElementsAtEventForMode(e, 'nearest', { intersect: true }, true);
+                        if (activePoints.length === 0) return;
+                        const { datasetIndex, index } = activePoints[0];
+                        const clickedXLabel = priceChart.data.labels[index];
+                        const clickedDatasetLabel = priceChart.data.datasets[datasetIndex].label;
+                        const currentState = JSON.parse(JSON.stringify(appState.chartState));
+
+                        if (appState.chartState.level === 'main') {
+                            if (clickedDatasetLabel.includes('Annual List')) {
+                                appState.chartState.history.push(currentState);
+                                appState.chartState.level = 'newModelBreakdown';
+                                appState.chartState.drilldownContext = 'list'; // Set context for LIST price
+                                updateUI();
+                            } else if (clickedDatasetLabel.includes('Discounted')) {
+                                appState.chartState.history.push(currentState);
+                                appState.chartState.level = 'newModelBreakdown';
+                                appState.chartState.drilldownContext = 'discounted'; // Set context for DISCOUNTED price
+                                updateUI();
+                            } else if (clickedXLabel === 'Historical' && clickedDatasetLabel === 'Historical Price') {
+                                appState.chartState.history.push(currentState);
+                                appState.chartState.level = 'historicalBreakdown';
+                                appState.chartState.selectedItem = ui.dealSelector.value;
+                                updateUI();
+                            }
+                        } else if (appState.chartState.level === 'newModelBreakdown' && clickedDatasetLabel.startsWith('Solutions')) {
+                            appState.chartState.history.push(currentState);
+                            appState.chartState.level = 'solutionsBreakdown';
+                            updateUI(); // Context carries over from the previous level
+                        } else if (appState.chartState.level === 'solutionsBreakdown') {
+                            appState.chartState.history.push(currentState);
+                            appState.chartState.level = 'itemDetail';
+                            appState.chartState.selectedItem = clickedXLabel;
+                            updateUI(); // Context carries over
+                        }
+                    }
+                }
+            });
+
+            // Initial UI State
+            const initialSpend = appState.inputs.spend;
+            ui.spendSlider.classList.toggle('opacity-50', initialSpend === 0);
+            ui.spendValue.classList.toggle('text-slate-400', initialSpend === 0);
+            ui.spendValue.classList.toggle('text-blue-600', initialSpend !== 0);
+
+            // Set initial user slider max based on default FTEs
+            ui.usersSlider.max = appState.inputs.ftes * 1000;
+
+            makeEditable(ui.spendValue, ui.spendSlider, 'spend');
+            makeEditable(ui.ftesValue, ui.ftesSlider, 'ftes', { isFloat: true, inputMultiplier: 1000, stateMultiplier: 1/1000 });
+            makeEditable(ui.usersValue, ui.usersSlider, 'users');
+
+            renderModelExplorer();
+            renderResourceHub();
+            populateCheckboxes();
+            setSegment(appState.segment);
+            populateAnalysisCheckboxes();
+            updateAnalysisSegment();
+            updateCompetitiveScenarioOptions();
+            runAndRenderAnalysis();
+            updateUI();
+        });
+    </script>
+</body>
+</html>
+
